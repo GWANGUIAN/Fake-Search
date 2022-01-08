@@ -1,13 +1,16 @@
 import React, { useState, useEffect, useRef } from 'react';
 import AlertLogin from '../components/Main/AlertLogin';
+import Login from './Login';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCog, faSearch } from '@fortawesome/free-solid-svg-icons';
 import './Main.css';
 
 export default function Main() {
   
-  const el = useRef()
-  const button = useRef()
+  const notification = useRef();
+  const login = useRef();
+  const btnSetting = useRef();
+  const btnLogin = useRef();
   const [siteName, setSiteName] = useState('');
   const [isLogin, setIsLogin] = useState(1);
   const [searchWord, setSearchWord] = useState('');
@@ -15,9 +18,11 @@ export default function Main() {
   const [autoComplete, setAutoComplete] = useState(['가', '가나', '가나다']);
   const [modal, setModal] = useState(false);
   const [focus, setFocus] = useState(false);
+  const [loginModal, setLoginModal] = useState(false)
   
   const handleClickOutside = ({ target }) => {
-    if (!button.current.contains(target) && !el.current.contains(target)) setModal(false);
+    if (!btnSetting.current.contains(target) && !notification.current.contains(target)) setModal(false);
+    if(!btnLogin.current.contains(target) && !login.current.contains(target)) setLoginModal(false)
   };
 
 useEffect(() => {
@@ -37,20 +42,12 @@ useEffect(() => {
 
   return (
     <>
-      <head>
-        <link rel='preconnect' href='https://fonts.googleapis.com' />
-        <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin />
-        <link
-          href='https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@900&display=swap'
-          rel='stylesheet'
-        />
-      </head>
       <div className='main-container'>
         <div className='navBar-container'>
           {isLogin === 0 ? (
             ''
           ) : isLogin === 1 ? (
-            <div className='btn-login'>로그인</div>
+            <div className='btn-login' ref={btnLogin} onClick={()=>{setLoginModal(true)}}>로그인</div>
           ) : (
             <div className='btn-logout'>로그아웃</div>
           )}
@@ -59,18 +56,14 @@ useEffect(() => {
             onClick={() => {
               setModal(!modal);
             }}
-            ref={button}
+            ref={btnSetting}
           >
             <FontAwesomeIcon className='btn-setting' icon={faCog} />
           </div>
-          <div  ref={el} className={modal ? 'alertlogin-container' : 'off'}>
-    <div className='text-noti'>로그인 후 이용 가능합니다.</div>
-    <div className='btn-guestlogin'>게스트 로그인</div>
-  </div>
+          <AlertLogin  el={notification} modal={modal}/>
         </div>
         <div className='searchForm-container'>
           <div className='logo' style={{ color: themeColor }}>
-            {' '}
             {siteName}
           </div>
           <div className='search-box hidden'>
@@ -119,6 +112,7 @@ useEffect(() => {
           </div>
         </div>
       </div>
+      {loginModal&&<Login login={login} siteName={siteName} themeColor={themeColor}/>}
     </>
   );
 }
