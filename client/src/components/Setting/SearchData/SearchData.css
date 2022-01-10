@@ -1,0 +1,253 @@
+.searchdata-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.searchdata-container .box-control {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  border-bottom: 3px solid rgb(190, 190, 190);
+  padding: 0px 50px;
+}
+
+.searchdata-container #text-searchWord {
+  flex: 1.3;
+  text-align: center;
+  font-size: 1.1em;
+}
+
+.searchdata-container #input-seachWord {
+  flex: 4;
+}
+
+.searchdata-container #btn-save {
+  flex: 0.8;
+  margin: 0px 10px;
+  box-shadow: none;
+  border: none;
+  outline: inherit;
+  cursor: pointer;
+  width: 50px;
+  height: 35px;
+  border-radius: 5px;
+  color: rgb(255, 255, 255);
+  font-size: 1.05em;
+  font-weight: 500;
+}
+
+.searchdata-container #btn-save:hover {
+  background-color: inherit;
+}
+
+.searchdata-container #btn-preview {
+  flex: 5;
+  margin-left: auto;
+  text-align: right;
+}
+
+.searchdata-container #btn-preview span {
+  cursor: pointer;
+  color: rgb(168, 168, 168);
+  font-weight: 500;
+}
+
+.searchdata-container #btn-add-word {
+  flex: 2;
+  margin-left: auto;
+  text-align: center;
+  cursor: pointer;
+  min-width: 100px;
+  color: rgb(39, 39, 39);
+  font-weight: 500;
+}
+
+.searchdata-container #btn-delete-word {
+  flex: 0.5;
+  margin-left: auto;
+  text-align: center;
+  cursor: pointer;
+  min-width: 30px;
+  color: rgb(251, 110, 110);
+  font-weight: 500;
+}
+
+.searchdata-container .box-section {
+  flex: 6;
+  display: flex;
+  flex-direction: column;
+  padding: 10px 20px;
+  position: relative;
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+
+.searchdata-container #btn-add-section {
+  text-align: right;
+  font-size: 1.05em;
+  font-weight: 420;
+  margin-bottom: 10px;
+}
+
+.searchdata-container #btn-add-section span {
+  cursor: pointer;
+}
+
+.searchdata-container .setting-section {
+  height: 100%;
+  /* max-height: 72vh; */
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+/* 스크롤바 설정*/
+.searchdata-container .setting-section::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* 스크롤바 막대 설정*/
+.searchdata-container .setting-section::-webkit-scrollbar-thumb {
+  height: 17%;
+  background-color: gray;
+  border-radius: 10px;
+}
+
+/* 스크롤바 뒷 배경 설정*/
+.searchdata-container .setting-section::-webkit-scrollbar-track {
+  background-color: rgb(214, 214, 214);
+  border-radius: 10px;
+}
+
+/*섹션 추가 모달*/
+
+.searchdata-container .modalsection-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: absolute;
+  width: 200px;
+  height: 120px;
+  border-radius: 4px;
+  box-shadow: 0px 4px 4px rgb(187, 187, 187);
+  background-color: white;
+  margin-top: 5px;
+  padding: 10px;
+  right: 12px;
+}
+
+.searchdata-container .hidden {
+  display: none;
+}
+
+.searchdata-container .modalsection-container div {
+  text-align: left;
+  margin: 3px 0px;
+}
+
+.searchdata-container .modalsection-container input[type='checkbox'] {
+  transform: scale(1.5);
+}
+
+.searchdata-container .modalsection-container .text-profile,
+.searchdata-container .modalsection-container .text-news,
+.searchdata-container .modalsection-container .text-image,
+.searchdata-container .modalsection-container .text-music {
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+/*검색어 추가 모달*/
+
+.searchdata-container .add-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  width: 450px;
+  height: 250px;
+  border-radius: 15px;
+  border: 1px solid rgb(235, 235, 235);
+  box-shadow: 0px 4px 4px rgb(187, 187, 187);
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.searchdata-container .bg-modal{
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    position: absolute;
+    display: block;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+    text-align: center;
+}
+
+.searchdata-container .add-container .btn-close{
+    flex: 1;
+    align-items: center;
+    text-align: right;
+    font-size: 1.3em;
+    color:rgb(134, 134, 134)
+}
+
+.searchdata-container .add-container .btn-close *{
+    cursor: pointer;
+}
+
+.searchdata-container .add-container .box-input-add{
+    flex:3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.searchdata-container .add-container #input-new-word{
+  width: 320px;
+  height: 50px;
+  text-align: center;
+  font-size: 1.2em;
+  color: rgb(82, 82, 82);
+  font-family: 'Noto Sans KR';
+  border: 2px solid rgb(156, 156, 156);
+  border-radius: 5px;
+  margin: 0 auto;
+    
+}
+
+.searchdata-container .add-container #input-new-word:focus {
+    outline: inherit;
+  }
+
+  .searchdata-container .add-container #message{
+      margin-bottom: 20px;
+      color:rgb(251, 110, 110);
+      font-size: 0.9em;
+      cursor:default;
+  }
+
+.searchdata-container .add-container #btn-add-seachword{
+    border: inherit;
+    outline: inherit;
+    cursor: pointer;
+    width: 70px;
+    height: 35px;
+    border-radius: 5px;
+    color: rgb(255, 255, 255);
+    font-size: 1.05em;
+    font-weight: 500;
+    margin: 0 auto;
+}
+
+.searchdata-container .add-container #btn-add-seachword:hover {
+    background-color: inherit;
+  }

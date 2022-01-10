@@ -10,9 +10,6 @@ export default function Site() {
   const [modalColor, setModalColor] = useState(false)
 
   const handleClickOutside = ({ target }) => {
-    console.log(target)
-    console.log(!btnColor.current.contains(target))
-    console.log(!boxColor.current.contains(target))
     if (!boxColor.current.contains(target) && !btnColor.current.contains(target)) setModalColor(false);
   };
 
@@ -27,8 +24,8 @@ useEffect(() => {
     <div className='box-sitename'>
       <div className='title-sitename'>사이트 이름</div>
       <div className='box-input'>
-        <input type='text' id='input-name'></input>
-        <button className='btn-submit' style={{backgroundColor : themeColor}}>변경하기</button>
+        <input type='text' id='input-name'/>
+        <button id='btn-submit' style={{backgroundColor : themeColor}}>변경하기</button>
       </div>
     </div>
     <div className='box-theme'>

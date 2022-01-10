@@ -8,7 +8,7 @@ import './Setting.css';
 
 export default function Setting() {
   const [themeColor, setThemeColor] = useState('#2260FF');
-  const [tabMenu, setTabMenu] = useState(0);
+  const [tabMenu, setTabMenu] = useState(2);
 
   return (
     <div className='setting-container' style={{ backgroundColor: '#B1C2E2' }}>
