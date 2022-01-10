@@ -2,6 +2,8 @@
   display: flex;
   flex-direction: column;
   height: 100%;
+  padding: 20px 80px;
+  box-sizing: border-box;
 }
 
 .site-container .box-sitename {
@@ -40,7 +42,7 @@
   outline: inherit;
 }
 
-.site-container .btn-submit {
+.site-container #btn-submit {
   border: inherit;
   outline: inherit;
   cursor: pointer;
@@ -87,14 +89,3 @@
     display: inline-block;
 }
 
-.site-container {
-}
-
-.site-container {
-}
-
-.site-container {
-}
-
-.site-container {
-}

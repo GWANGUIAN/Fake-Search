@@ -22,7 +22,7 @@ export default function Main() {
   
   const handleClickOutside = ({ target }) => {
     if (!btnSetting.current.contains(target) && !notification.current.contains(target)) setModal(false);
-    if(!btnLogin.current.contains(target) && !login.current.contains(target)) setLoginModal(false)
+    if(!btnLogin.current.contains(target) && !login.current.contains(target)) setLoginModal(false);
   };
 
 useEffect(() => {
@@ -32,8 +32,14 @@ useEffect(() => {
   };
 }, []);
 
+const updateTitle = () => {
+  const htmlTitle = document.querySelector("title");
+  htmlTitle.innerHTML = 'FAKESEARCH';
+};
+
   useEffect(() => {
     setSiteName('FAKESEARCH');
+    updateTitle()
   }, []);
 
   const handleSeachWord = (e) => {
