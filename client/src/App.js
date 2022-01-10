@@ -9,13 +9,13 @@ import Footer from './pages/Footer';
 function App() {
   return (
     <div className="App">
-      {/* <div>
+      <div>
         <Link to='/login'>로그인</Link>
         <Link to='/setting'>설정</Link>
         <Link to='/search'>검색</Link>
         <Link to='/main'>메인</Link>
         <Link to='/footer'>푸터</Link>
-      </div> */}
+      </div>
       <div className='App-content'>
       <Switch>
         <Route path='/login' component={Login}/>

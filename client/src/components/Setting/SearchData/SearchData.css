@@ -121,17 +121,16 @@
   border-radius: 10px;
 }
 
-/* .searchdata-container .box-drag{
+.searchdata-container .box-drag{
   display: flex;
+  align-items: center;
 }
 
 .searchdata-container .btn-drag{
-  font-size: 1.2em;
-  font-weight: 700;
-  margin-top: 15px;
-  margin-right: 5px;
+  font-size: 1.1em;
+  margin-right: 10px;
   color: rgb(105, 105, 105);
-} */
+} 
 
 /*섹션 추가 모달*/
 

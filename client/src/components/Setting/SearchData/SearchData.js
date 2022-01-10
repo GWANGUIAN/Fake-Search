@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTimesCircle } from '@fortawesome/free-solid-svg-icons';
+import { faTimesCircle, faGripVertical } from '@fortawesome/free-solid-svg-icons';
 import Select from 'react-select';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import ProfileSet from './ProfileSet';
@@ -108,49 +108,68 @@ export default function SearchData({ themeColor }) {
                       {(provided) => {
                         if (title === '프로필') {
                           return (
-                            <div ref={provided.innerRef}
-                            {...provided.dragHandleProps}
-                            {...provided.draggableProps}>
-                            <ProfileSet/>
+                            <div
+                              className='box-drag'
+                              ref={provided.innerRef}
+                              {...provided.dragHandleProps}
+                              {...provided.draggableProps}
+                            >
+                              <FontAwesomeIcon
+                                className='btn-drag'
+                                icon={faGripVertical}
+                              />
+                              <ProfileSet />
                             </div>
                           );
                         }
                         if (title === '뉴스') {
                           return (
-                            <div ref={provided.innerRef}
-                            {...provided.dragHandleProps}
-                            {...provided.draggableProps}>
-                            <NewsSet/>
+                            <div
+                              className='box-drag'
+                              ref={provided.innerRef}
+                              {...provided.dragHandleProps}
+                              {...provided.draggableProps}
+                            >
+                              <FontAwesomeIcon
+                                className='btn-drag'
+                                icon={faGripVertical}
+                              />
+                              <NewsSet />
                             </div>
                           );
                         }
                         if (title === '이미지') {
                           return (
-                            <div ref={provided.innerRef}
-                            {...provided.dragHandleProps}
-                            {...provided.draggableProps}>
-                            <ImageSet/>
+                            <div
+                              className='box-drag'
+                              ref={provided.innerRef}
+                              {...provided.dragHandleProps}
+                              {...provided.draggableProps}
+                            >
+                              <FontAwesomeIcon
+                                className='btn-drag'
+                                icon={faGripVertical}
+                              />
+                              <ImageSet />
                             </div>
                           );
                         }
                         if (title === '음악') {
                           return (
-                            <div ref={provided.innerRef}
-                            {...provided.dragHandleProps}
-                            {...provided.draggableProps}>
-                            <MusicSet/>
+                            <div
+                              className='box-drag'
+                              ref={provided.innerRef}
+                              {...provided.dragHandleProps}
+                              {...provided.draggableProps}
+                            >
+                              <FontAwesomeIcon
+                                className='btn-drag'
+                                icon={faGripVertical}                  
+                              />
+                              <MusicSet />
                             </div>
                           );
                         }
-                        return (
-                          <div
-                            ref={provided.innerRef}
-                            {...provided.dragHandleProps}
-                            {...provided.draggableProps}
-                          >
-                            {title}
-                          </div>
-                        );
                       }}
                     </Draggable>
                   ))}
