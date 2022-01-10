@@ -8,7 +8,7 @@ import NewsSet from './NewsSet';
 import ImageSet from './ImageSet';
 import MusicSet from './MusicSet';
 import './SearchData.css';
-import './SetComponent.css'
+import './SetComponent.css';
 
 export default function SearchData({ themeColor }) {
   const boxModal = useRef();
@@ -41,10 +41,12 @@ export default function SearchData({ themeColor }) {
     const items = [...todos];
     const [reorderedItem] = items.splice(result.source.index, 1);
     items.splice(result.destination.index, 0, reorderedItem);
-    items.forEach((el,index) => {items[index].id=String(index+1)})
+    items.forEach((el, index) => {
+      items[index].id = String(index + 1);
+    });
 
     setTodos(items);
-    console.log(items)
+    console.log(items);
   };
 
   useEffect(() => {
@@ -93,7 +95,7 @@ export default function SearchData({ themeColor }) {
           />
         </div>
         <div className='setting-section'>
-          {/* <DragDropContext onDragEnd={handleDropChange}>
+          <DragDropContext onDragEnd={handleDropChange}>
             <Droppable droppableId='todos'>
               {(provided) => (
                 <div
@@ -104,6 +106,42 @@ export default function SearchData({ themeColor }) {
                   {todos.map(({ id, title }, index) => (
                     <Draggable key={id} draggableId={id} index={index}>
                       {(provided) => {
+                        if (title === '프로필') {
+                          return (
+                            <div ref={provided.innerRef}
+                            {...provided.dragHandleProps}
+                            {...provided.draggableProps}>
+                            <ProfileSet/>
+                            </div>
+                          );
+                        }
+                        if (title === '뉴스') {
+                          return (
+                            <div ref={provided.innerRef}
+                            {...provided.dragHandleProps}
+                            {...provided.draggableProps}>
+                            <NewsSet/>
+                            </div>
+                          );
+                        }
+                        if (title === '이미지') {
+                          return (
+                            <div ref={provided.innerRef}
+                            {...provided.dragHandleProps}
+                            {...provided.draggableProps}>
+                            <ImageSet/>
+                            </div>
+                          );
+                        }
+                        if (title === '음악') {
+                          return (
+                            <div ref={provided.innerRef}
+                            {...provided.dragHandleProps}
+                            {...provided.draggableProps}>
+                            <MusicSet/>
+                            </div>
+                          );
+                        }
                         return (
                           <div
                             ref={provided.innerRef}
@@ -120,11 +158,11 @@ export default function SearchData({ themeColor }) {
                 </div>
               )}
             </Droppable>
-          </DragDropContext> */}
-          <ProfileSet/>
-          <NewsSet/>
-          <ImageSet/>
-          <MusicSet/>
+          </DragDropContext>
+          {/* <ProfileSet />
+          <NewsSet />
+          <ImageSet />
+          <MusicSet /> */}
         </div>
       </div>
       {modalAdd && (
