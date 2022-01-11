@@ -6,7 +6,7 @@
 	.st0{fill:#FFFFFF;}
 </style>
 <g>
-	<circle class="st0" cx="257.1" cy="244.5" r="143.4"/>
+	<circle class="st0" cx="257.1" cy="244.5" r="143.4" fill='none'/>
 	<g>
 		
 			<image style="overflow:visible;" width="386.8" height="386.8" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAYQAAAGDCAYAAAAruGdrAAAACXBIWXMAAAsSAAALEgHS3X78AAAA
