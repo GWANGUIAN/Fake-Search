@@ -1,4 +1,4 @@
-import { CHANGE, RESET } from '../actions/index';
+import { CHANGEMUSIC, RESETMUSIC } from '../actions/index';
 
 const musicReducer = (
   state = {
@@ -6,25 +6,27 @@ const musicReducer = (
     view: 0,
     album: '',
     info: '',
+    date: '',
     order: 4,
-    title: '',
+    title: 're:wind',
     artist: ''
   },
   action
 ) => {
   switch (action.type) {
-    case CHANGE:
+    case CHANGEMUSIC:
       return {
         ...state,
         ...action.payload
       };
-    case RESET:
+    case RESETMUSIC:
       return {
         ...state,
         type: 'music',
         view: 0,
         album: '',
         info: '',
+        date: '',
         order: '4',
         title: '',
         artist: ''

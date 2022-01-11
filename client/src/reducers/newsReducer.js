@@ -1,27 +1,27 @@
-import { CHANGE, RESET } from '../actions/index';
+import { CHANGENEWS, RESETNEWS } from '../actions/index';
 
 const newsReducer = (
   state = {
     type: 'news',
     view: 0,
     order: 2,
-    content: [{title:'', content: '', datetime: '', reporter:''}],
+    content: [{title:'', content: '', datetime: '', reporter:'', img:''}],
   },
   action
 ) => {
   switch (action.type) {
-    case CHANGE:
+    case CHANGENEWS:
       return {
         ...state,
         ...action.payload
       };
-    case RESET:
+    case RESETNEWS:
       return {
         ...state,
         type: 'news',
         view: 0,
         order: 2,
-        content: [{title:'', content: '', datetime: '', reporter:''}],
+        content: [{title:'', content: '', datetime: '', reporter:'', img:''}],
       };
 
     default:

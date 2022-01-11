@@ -1,4 +1,4 @@
-import { CHANGE, RESET } from '../actions/index';
+import { CHANGEIMAGE, RESETIMAGE } from '../actions/index';
 
 const imageReducer = (
   state = {
@@ -10,12 +10,12 @@ const imageReducer = (
   action
 ) => {
   switch (action.type) {
-    case CHANGE:
+    case CHANGEIMAGE:
       return {
         ...state,
         ...action.payload
       };
-    case RESET:
+    case RESETIMAGE:
       return {
         ...state,
         type: 'image',

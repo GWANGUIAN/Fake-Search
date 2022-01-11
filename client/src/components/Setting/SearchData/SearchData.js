@@ -1,16 +1,49 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTimesCircle, faGripVertical } from '@fortawesome/free-solid-svg-icons';
+import {
+  faTimesCircle,
+  faGripVertical,
+} from '@fortawesome/free-solid-svg-icons';
 import Select from 'react-select';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import ProfileSet from './ProfileSet';
 import NewsSet from './NewsSet';
 import ImageSet from './ImageSet';
 import MusicSet from './MusicSet';
+import { useSelector, useDispatch } from 'react-redux';
+import {
+  changeProfile,
+  changeNews,
+  changeImage,
+  changeMusic,
+} from '../../../actions';
 import './SearchData.css';
 import './SetComponent.css';
 
 export default function SearchData({ themeColor }) {
+  const {
+    type: profileType,
+    view: profileView,
+    order: profileOrder,
+  } = useSelector((state) => state.profileReducer);
+  const {
+    type: newsType,
+    view: newsView,
+    order: newsOrder,
+  } = useSelector((state) => state.newsReducer);
+  const {
+    type: imageType,
+    view: imageView,
+    order: imageOrder,
+  } = useSelector((state) => state.imageReducer);
+  const {
+    type: musicType,
+    view: musicView,
+    order: musicOrder,
+  } = useSelector((state) => state.musicReducer);
+
+  const dispatch= useDispatch();
+
   const boxModal = useRef();
   const btnSection = useRef();
   const [searchWordList, setSearchWordList] = useState([
@@ -19,6 +52,11 @@ export default function SearchData({ themeColor }) {
   ]);
   const [modalSection, setModalSection] = useState(false);
   const [modalAdd, setModalAdd] = useState(false);
+  const [openProfile, setOpenProfile] = useState(false);
+  const [openNews, setOpenNews] = useState(false);
+  const [openImage, setOpenImage] = useState(false);
+  const [openMusic, setOpenMusic] = useState(false);
+
 
   const [todos, setTodos] = useState([
     { id: '1', title: '프로필' },
@@ -37,16 +75,30 @@ export default function SearchData({ themeColor }) {
 
   const handleDropChange = (result) => {
     if (!result.destination) return;
-    console.log(result);
-    const items = [...todos];
+    const items = [
+      { order: profileOrder, type: 'profile' },
+      { order: newsOrder, type: 'news' },
+      { order: imageOrder, type: 'image' },
+      { order: musicOrder, type: 'music' },
+    ].sort((a, b) => {
+      if (a.order > b.order) return 1;
+      else if (a.order < b.order) return -1;
+      else return 0;
+    });
     const [reorderedItem] = items.splice(result.source.index, 1);
     items.splice(result.destination.index, 0, reorderedItem);
     items.forEach((el, index) => {
-      items[index].id = String(index + 1);
+      items[index].order = index + 1;
+      if (el.type === 'profile') {
+        dispatch(changeProfile({ order: items[index].order }));
+      } else if (el.type === 'news') {
+        dispatch(changeNews({ order: items[index].order }));
+      } else if (el.type === 'image') {
+        dispatch(changeImage({ order: items[index].order }));
+      } else if (el.type === 'music') {
+        dispatch(changeMusic({ order: items[index].order }));
+      }
     });
-
-    setTodos(items);
-    console.log(items);
   };
 
   useEffect(() => {
@@ -96,92 +148,133 @@ export default function SearchData({ themeColor }) {
         </div>
         <div className='setting-section'>
           <DragDropContext onDragEnd={handleDropChange}>
-            <Droppable droppableId='todos'>
+            <Droppable droppableId='sections'>
               {(provided) => (
                 <div
-                  className='todos'
+                  className='sections'
                   {...provided.droppableProps}
                   ref={provided.innerRef}
                 >
-                  {todos.map(({ id, title }, index) => (
-                    <Draggable key={id} draggableId={id} index={index}>
-                      {(provided) => {
-                        if (title === '프로필') {
-                          return (
-                            <div
-                              className='box-drag'
-                              ref={provided.innerRef}
-                              {...provided.dragHandleProps}
-                              {...provided.draggableProps}
-                            >
-                              <FontAwesomeIcon
-                                className='btn-drag'
-                                icon={faGripVertical}
-                              />
-                              <ProfileSet />
-                            </div>
-                          );
-                        }
-                        if (title === '뉴스') {
-                          return (
-                            <div
-                              className='box-drag'
-                              ref={provided.innerRef}
-                              {...provided.dragHandleProps}
-                              {...provided.draggableProps}
-                            >
-                              <FontAwesomeIcon
-                                className='btn-drag'
-                                icon={faGripVertical}
-                              />
-                              <NewsSet />
-                            </div>
-                          );
-                        }
-                        if (title === '이미지') {
-                          return (
-                            <div
-                              className='box-drag'
-                              ref={provided.innerRef}
-                              {...provided.dragHandleProps}
-                              {...provided.draggableProps}
-                            >
-                              <FontAwesomeIcon
-                                className='btn-drag'
-                                icon={faGripVertical}
-                              />
-                              <ImageSet />
-                            </div>
-                          );
-                        }
-                        if (title === '음악') {
-                          return (
-                            <div
-                              className='box-drag'
-                              ref={provided.innerRef}
-                              {...provided.dragHandleProps}
-                              {...provided.draggableProps}
-                            >
-                              <FontAwesomeIcon
-                                className='btn-drag'
-                                icon={faGripVertical}                  
-                              />
-                              <MusicSet />
-                            </div>
-                          );
-                        }
-                      }}
-                    </Draggable>
-                  ))}
+                  {[
+                    {
+                      type: profileType,
+                      view: profileView,
+                      order: String(profileOrder),
+                    },
+                    {
+                      type: newsType,
+                      view: newsView,
+                      order: String(newsOrder),
+                    },
+                    {
+                      type: imageType,
+                      view: imageView,
+                      order: String(imageOrder),
+                    },
+                    {
+                      type: musicType,
+                      view: musicView,
+                      order: String(musicOrder),
+                    },
+                  ]
+                    .sort((a, b) => {
+                      if (a.order > b.order) return 1;
+                      else if (a.order < b.order) return -1;
+                      else return 0;
+                    })
+                    .map(({ type, view, order }, index) => (
+                      <Draggable key={order} draggableId={order} index={index}>
+                        {(provided) => {
+                          if (type === 'profile' && view) {
+                            return (
+                              <div
+                                className='box-drag'
+                                ref={provided.innerRef}
+                                
+                                {...provided.draggableProps}
+                              >
+                                <div {...provided.dragHandleProps}>
+                                <FontAwesomeIcon
+                                  className='btn-drag'
+                                  icon={faGripVertical}
+                                />
+                                </div>
+                                <ProfileSet isOpen={openProfile} setIsOpen={setOpenProfile}/>
+                              </div>
+                            );
+                          }
+                          if (type === 'news' && view) {
+                            return (
+                              <div
+                                className='box-drag'
+                                ref={provided.innerRef}
+          
+                                {...provided.draggableProps}
+                              >
+                                <div {...provided.dragHandleProps}>
+                                <FontAwesomeIcon
+                                  className='btn-drag'
+                                  icon={faGripVertical}
+                                />
+                                </div>
+                                <NewsSet isOpen={openNews} setIsOpen={setOpenNews}/>
+                              </div>
+                            );
+                          }
+                          if (type === 'image' && view) {
+                            return (
+                              <div
+                                className='box-drag'
+                                ref={provided.innerRef}
+                
+                                {...provided.draggableProps}
+                              >
+                                <div {...provided.dragHandleProps}>
+                                <FontAwesomeIcon
+                                  className='btn-drag'
+                                  icon={faGripVertical}
+                                />
+                                </div>
+                                <ImageSet isOpen={openImage} setIsOpen={setOpenImage}/>
+                              </div>
+                            );
+                          }
+                          if (type === 'music' && view) {
+                            return (
+                              <div
+                                className='box-drag'
+                                ref={provided.innerRef}
+                                
+                                {...provided.draggableProps}
+                              >
+                                <div {...provided.dragHandleProps}>
+                                <FontAwesomeIcon
+                                  className='btn-drag'
+                                  icon={faGripVertical}
+                                />
+                                </div>
+
+                                <MusicSet isOpen={openMusic} setIsOpen={setOpenMusic}/>
+                              </div>
+                            );
+                          } else {
+                            return (
+                              <div
+                                className='box-drag'
+                                ref={provided.innerRef}
+                                {...provided.dragHandleProps}
+                                {...provided.draggableProps}
+                              ></div>
+                            );
+                          }
+                        }}
+                      </Draggable>
+                    ))}
                   {provided.placeholder}
                 </div>
               )}
             </Droppable>
           </DragDropContext>
-          {/* <ProfileSet />
-          <NewsSet />
-          <ImageSet />
-          <MusicSet /> */}
         </div>
       </div>
       {modalAdd && (
@@ -192,6 +285,24 @@ export default function SearchData({ themeColor }) {
 }
 
 function ModalSection({ themeColor, boxModal, modalSection }) {
+  const dispatch = useDispatch();
+  const { view: profileView } = useSelector((state) => state.profileReducer);
+  const { view: newsView } = useSelector((state) => state.newsReducer);
+  const { view: imageView } = useSelector((state) => state.imageReducer);
+  const { view: musicView } = useSelector((state) => state.musicReducer);
+
+  const hadleView = (e) => {
+    if (e.target.id === 'profile') {
+      dispatch(changeProfile({ view: e.target.checked }));
+    } else if (e.target.id === 'news') {
+      dispatch(changeNews({ view: e.target.checked }));
+    } else if (e.target.id === 'image') {
+      dispatch(changeImage({ view: e.target.checked }));
+    } else if (e.target.id === 'music') {
+      dispatch(changeMusic({ view: e.target.checked }));
+    }
+  };
+
   return (
     <div
       ref={boxModal}
@@ -203,27 +314,51 @@ function ModalSection({ themeColor, boxModal, modalSection }) {
       style={{ border: `1px solid ${themeColor}` }}
     >
       <div>
-        <input type='checkbox' id='profile' className='profile-check-box' />
+        <input
+          type='checkbox'
+          id='profile'
+          className='profile-check-box'
+          checked={profileView}
+          onChange={hadleView}
+        />
         <label for='profile' className='text-profile'>
           프로필
         </label>
       </div>
       <div>
-        <input type='checkbox' id='news' className='news-check-box' />
+        <input
+          type='checkbox'
+          id='news'
+          className='news-check-box'
+          checked={newsView}
+          onChange={hadleView}
+        />
         <label for='news' className='text-news'>
           뉴스
         </label>
       </div>
       <div>
-        <input type='checkbox' id='image' className='image-check-box' />
+        <input
+          type='checkbox'
+          id='image'
+          className='image-check-box'
+          checked={imageView}
+          onChange={hadleView}
+        />
         <label for='image' className='text-image'>
           이미지
         </label>
       </div>
       <div>
-        <input type='checkbox' id='music' className='music-check-box' />
+        <input
+          type='checkbox'
+          id='music'
+          className='music-check-box'
+          checked={musicView}
+          onChange={hadleView}
+        />
         <label for='music' className='text-music'>
-          프로필
+          음악
         </label>
       </div>
     </div>
