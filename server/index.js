@@ -3,7 +3,8 @@ const { Sequelize } = require("sequelize");
 const express = require("express");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
-
+const multer = require("multer");
+const postRouter = require("./router/postRouter.js");
 
 /*sequelize 설정*/
 const sequelize = new Sequelize(
@@ -37,9 +38,25 @@ const corsOptions = {
   credentials: true,
 };
 
-app.use(cookieParser());
+var storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, "public/");
+  },
+  filename: function (req, file, cb) {
+    let ext = file.originalname.split(".");
+    ext = ext[ext.length - 1];
+    cb(null, `${Date.now()}.${ext}`);
+  },
+});
+
+const upload = multer({ storage: storage });
+
 app.use(express.json({ strict: false }));
+app.use(cookieParser());
+app.use([express.static("public"), upload.array("files")]);
 app.use(cors(corsOptions));
+
+app.use("/post", postRouter);
 
 let server = app.listen(process.env.PORT, () => {
   console.log(`🚀 Server is starting on ${process.env.PORT}`);

@@ -36,6 +36,6 @@ module.exports = {
   },
 
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.bulkDelete("AutoComplete", null, {});
+    await queryInterface.bulkDelete("AutoCompletes", null, {});
   },
 };
