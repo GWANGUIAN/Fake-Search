@@ -1,22 +1,21 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMinusCircle } from '@fortawesome/free-solid-svg-icons';
+import { faMinusCircle, faTimesCircle } from '@fortawesome/free-solid-svg-icons';
+import { useSelector, useDispatch } from 'react-redux';
+import { changeNews, resetNews } from '../../../actions';
+import ImageUpload from './ImageUpload';
+import axios from 'axios';
 
-export default function NewsSet() {
-  const [isOpen, setIsOpen] = useState(false);
-  const [newsData, setNewsData] = useState({
-    type: 'news',
-    content: [
-      {
-        reporter: '조선일보',
-        datetime: '1시간전',
-        title: '[긴급속보] OOO♡OOO 열애중?! 알고보니.....',
-        content:
-          '기사내용 기사내용 기사내용 기사내용 기사내용 기사내용 기사내용 기사내용 기사내용 기사내용 기사내용 기사내용 기사내용 기사내용 기사내용 기사내용 기사내용 기사내용 기사내용 기사내용 기사내용',
-      },
-    ],
-    order: '2',
-  });
+export default function NewsSet({ isOpen, setIsOpen }) {
+
+  const dispatch = useDispatch();
+  const { content } = useSelector((state) => state.newsReducer);
+
+  const addNews = () => {
+    const data = [...content];
+    data.push({ title: '', content: '', datetime: '', reporter: '', img: '' });
+    dispatch(changeNews({ content: data }));
+  };
 
   return (
     <div className='newsset-container'>
@@ -30,46 +29,128 @@ export default function NewsSet() {
         >
           {isOpen ? '닫기' : '열기'}
         </div>
-        <div className='btn-delete-section'>
+        <div
+          className='btn-delete-section'
+          onClick={() => {
+            dispatch(resetNews());
+          }}
+        >
           <FontAwesomeIcon icon={faMinusCircle} /> 삭제
         </div>
       </div>
       {isOpen && (
         <>
-          {newsData.content.map((el, id) => {
-            return <ElOfNews key={id} el={el} />;
+          {content.map((el, id) => {
+            return <ElOfNews key={id} el={el} id={id} />;
           })}
-          <button id='btn-add-news'>+ 뉴스 추가</button>
+          <button id='btn-add-news' onClick={addNews}>
+            + 뉴스 추가
+          </button>
         </>
       )}
     </div>
   );
 }
 
-function ElOfNews({ el }) {
+function ElOfNews({ el, id }) {
+  const dispatch = useDispatch();
+  const { content } = useSelector((state) => state.newsReducer);
+
+  const hadleInput = (e) => {
+    const data = [...content];
+    data[id] = { ...data[id], [e.target.name]: e.target.value };
+    dispatch(changeNews({ content: data }));
+  };
+
+  const deleteNews = () => {
+    const data = [...content];
+    data.splice(id, 1);
+    dispatch(changeNews({ content: data }));
+  };
+
+  const deleteImg = () => {
+    const data = [...content];
+    data[id] = { ...data[id], img: '' };
+    dispatch(changeNews({ content: data }));
+  };
+
+  const onDrop = async (pictureFiles, pictureBase64) => {
+    const body = new FormData();
+    body.append('files', pictureFiles[0]);
+    const res = await axios.post(
+      `${process.env.REACT_APP_SERVER_API}/post/upload_files`,
+      body,
+      {
+        headers: { 'Content-Type': 'multipart/form-data' },
+      }
+    );
+    const data = [...content];
+    data[id] = {
+      ...data[id],
+      img: `${process.env.REACT_APP_SERVER_API}/${res.data.filename}`,
+    };
+    dispatch(changeNews({ content: data }));
+  };
+
   return (
     <div className='box-news'>
       <div className='inline-box-news'>
         <div className='box-news-content'>
           <div className='news-line-first'>
-            <input type='text' className='reporter' placeholder='신문사' />
-            <input type='text' className='news-date' placeholder='기사 날짜' />
+            <input
+              type='text'
+              className='reporter'
+              placeholder='신문사'
+              name='reporter'
+              value={el.reporter}
+              onChange={hadleInput}
+            />
+            <input
+              type='text'
+              className='news-date'
+              placeholder='기사 날짜'
+              name='datetime'
+              value={el.datetime}
+              onChange={hadleInput}
+            />
           </div>
           <input
             type='text'
             className='title-news'
             value={el.title}
             placeholder='뉴스 제목'
+            name='title'
+            onChange={hadleInput}
           />
           <textarea
             value={el.content}
             className='content-news'
             placeholder='뉴스 내용'
+            name='content'
+            onChange={hadleInput}
           />
         </div>
-        <div className='img-news'>뉴스 사진</div>
+        <div className='img-news'>
+          <div className='img-news-line'>
+            <ImageUpload imageData={el.img} onDrop={onDrop} />
+          </div>
+
+          {el.img !== '' && (
+            <FontAwesomeIcon
+              className='btn-delete-img'
+              icon={faTimesCircle}
+              onClick={deleteImg}
+            />
+          )}
+        </div>
       </div>
-      <FontAwesomeIcon className='btn-delete-news' icon={faMinusCircle} />
+      {id !== 0 && (
+        <FontAwesomeIcon
+          className='btn-delete-news'
+          icon={faMinusCircle}
+          onClick={deleteNews}
+        />
+      )}
     </div>
   );
 }

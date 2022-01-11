@@ -1,10 +1,9 @@
 .whole-box-img{
-    width: 95%;
-    height: 150px;
+    width: 100%;
+    height: 100%;
     border: 1px solid rgb(179, 179, 179);
     border-radius: 10px;
     overflow: hidden;
-    margin: 0px 3px 10px 0px;
     box-sizing: border-box;
 }
 
@@ -25,6 +24,10 @@
     box-sizing: border-box;
     text-align: center;
     background-color: rgb(226, 226, 226);
+}
+
+.box-img-upload .btn-img-upload{
+
 }
 
 .img-uploaded{

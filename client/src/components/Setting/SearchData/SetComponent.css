@@ -101,15 +101,31 @@
 }
 
 .profileset-container .img-profile{
-    height: 200px;
-    width: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
     margin: 0px 3px 10px 0;
-    text-align: center;
-    line-height: 200px;
-    background-color : rgb(209, 209, 209);
-    color: white;
-    font-weight: 600;
     border-radius: 10px;
+    position: relative;
+}
+
+.profileset-container .img-profile-line{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 200px;
+    width: 160px;
+    border-radius: 10px;
+}
+
+.profileset-container .btn-delete-profileImg{
+    color: rgb(78, 78, 78);
+    cursor: pointer;
+    position:absolute;
+    top: 4px;
+    right: 4px;
+    font-size: 1.2em;
 }
 
 .profileset-container .box-detail-text{
@@ -125,7 +141,7 @@
     width: 80px;
     font-weight: 450;
     font-size: 1.1em;
-    color:rgb(165, 165, 165);
+    color:rgb(59, 59, 59);
 }
 
 .profileset-container .content-detail-text{
@@ -138,6 +154,10 @@
     margin: auto 0;
     cursor:pointer;
     color: rgb(78, 78, 78);
+}
+
+.profileset-container .unvisible{
+    visibility: hidden;
 }
 
 .profileset-container #btn-add-detail{
@@ -154,6 +174,8 @@
     background-color: inherit;
 }
 
+
+
 .profileset-container #btn-add-detail:hover{
     background-color: rgb(245, 245, 245);
 }
@@ -164,6 +186,13 @@
     padding: 5px 0px;
 }
 
+.profileset-container .box-subinfo-title{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 7px 10px 0px 10px;
+}
+
 .profileset-container .title-subinfo{
     font-size: 1.15em;
     font-weight: 450;
@@ -172,9 +201,15 @@
     margin-bottom: 5px;
 }
 
+.profileset-container .box-delete-subinfo{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
 .profileset-container .btn-delete-subinfo{
-    margin: auto 0;
-    cursor:pointer;
+    margin: auto 05px auto 0;
     color: rgb(78, 78, 78);
 }
 
@@ -192,14 +227,30 @@
 
 
 .profileset-container .img-subinfo{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    position: relative;
+}
+
+.profileset-container .img-subinfo-line{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     height: 150px;
     width: 120px;
-    text-align: center;
-    line-height: 150px;
-    background-color : rgb(209, 209, 209);
-    color: white;
-    font-weight: 600;
     border-radius: 10px;
+}
+
+.profileset-container .btn-delete-subinfo-img{
+    position:absolute;
+    cursor:pointer;
+    color: rgb(78, 78, 78);
+    top: 3px;
+    right: 3px;
 }
 
 .profileset-container .title-subinfo-content{
@@ -238,7 +289,7 @@
     outline: inherit;
     cursor: pointer;
     height: 35px;
-    width: 100px;
+    width: 150px;
     border-radius: 5px;
     color: rgb(85, 85, 85);
     font-size: 1.05em;
@@ -327,16 +378,35 @@
 }
 
 .newsset-container .img-news{
-    flex: 1;
+    flex:1.3;
     margin-left: 10px;
-    height: 90px;
-    min-width: 130px;
     text-align: center;
-    line-height: 100px;
-    background-color : rgb(209, 209, 209);
-    color: white;
-    font-weight: 600;
     border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.newsset-container .img-news-line{
+    height: 140px;
+    width: 100%;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.newsset-container .btn-delete-img{
+    color: rgb(78, 78, 78);
+    cursor: pointer;
+    position:absolute;
+    top: 6px;
+    right: 8px;
+    font-size: 1.2em;
 }
 
 .newsset-container .btn-delete-news{
@@ -400,6 +470,17 @@
     flex-direction: column;
     align-items: center;
     justify-content: left;
+    position: relative;
+}
+
+.imageset-container .el-img-line{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: left;
+    margin-bottom: 5px;
+    height: 150px;
+    width: 98%;
 }
 
 .imageset-container .img{
@@ -415,8 +496,12 @@
 }
 
 .imageset-container .btn-delete-img{
-    cursor:pointer;
     color: rgb(78, 78, 78);
+    cursor: pointer;
+    position:absolute;
+    top: 6px;
+    right: 8px;
+    font-size: 1.2em;
 }
 
 /*음악 설정*/
@@ -453,21 +538,28 @@
 }
 
 .musicset-container #img-album{
+    margin: 0px auto;
+    text-align: center;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.musicset-container #img-album-line{
     height: 150px;
     width: 150px;
-    margin: 5px auto;
-    text-align: center;
-    line-height: 150px;
-    background-color : rgb(209, 209, 209);
-    color: white;
-    font-weight: 600;
-    border-radius: 10px;
 }
 
 .musicset-container .btn-delete-album{
-    cursor:pointer;
     color: rgb(78, 78, 78);
-    margin: 0 auto;
+    cursor: pointer;
+    position:absolute;
+    top: 6px;
+    right: 6px;
+    font-size: 1.2em;
 }
 
 .musicset-container #script-song{
