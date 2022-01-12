@@ -4,7 +4,6 @@ const { getAccessToken } = require("../../utils/vaildation");
 module.exports = async (req, res) => {
   try {
     const response = await getAccessToken(req, res);
-    console.log(response)
     const {siteName} = req.body
     if(!siteName) {
         return res.status(400).json({

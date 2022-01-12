@@ -15,6 +15,7 @@
 }
 
 .searchdata-container #text-searchWord {
+  min-width: 50px;
   flex: 1.3;
   text-align: center;
   font-size: 1.1em;
@@ -32,6 +33,7 @@
   outline: inherit;
   cursor: pointer;
   width: 50px;
+  min-width: 50px;
   height: 35px;
   border-radius: 5px;
   color: rgb(255, 255, 255);
@@ -45,6 +47,7 @@
 
 .searchdata-container #btn-preview {
   flex: 5;
+  min-width: 60px;
   margin-left: auto;
   text-align: right;
 }
@@ -247,6 +250,14 @@
       cursor:default;
   }
 
+  .searchdata-container .add-container #message-hidden{
+    margin-bottom: 20px;
+    color:rgb(251, 110, 110);
+    font-size: 0.9em;
+    cursor:default;
+    visibility: hidden;
+}
+
 .searchdata-container .add-container #btn-add-seachword{
     border: inherit;
     outline: inherit;
@@ -263,3 +274,15 @@
 .searchdata-container .add-container #btn-add-seachword:hover {
     background-color: inherit;
   }
+
+  .searchdata-container .add-container #btn-add-seachword-none{
+    border: inherit;
+    outline: inherit;
+    width: 70px;
+    height: 35px;
+    border-radius: 5px;
+    color: rgb(255, 255, 255);
+    font-size: 1.05em;
+    font-weight: 500;
+    margin: 0 auto;
+}

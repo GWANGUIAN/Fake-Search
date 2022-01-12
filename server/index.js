@@ -6,6 +6,8 @@ const cookieParser = require("cookie-parser");
 const multer = require("multer");
 const postRouter = require("./router/postRouter");
 const userRouter = require("./router/userRouter");
+const autoRouter = require("./router/autoRouter");
+const searchRouter = require('./router/searchRouter')
 
 /*sequelize 설정*/
 const sequelize = new Sequelize(
@@ -59,6 +61,8 @@ app.use(cors(corsOptions));
 
 app.use("/post", postRouter);
 app.use("/users", userRouter);
+app.use("/auto", autoRouter);
+app.use("/search", searchRouter);
 
 let server = app.listen(process.env.PORT, () => {
   console.log(`🚀 Server is starting on ${process.env.PORT}`);

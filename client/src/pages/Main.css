@@ -64,6 +64,7 @@
     font-family: 'Noto Sans KR';
     font-size: 3.5em;
     margin-bottom: 1%;
+    cursor: pointer;
 }
 
 .main-container .search-box{

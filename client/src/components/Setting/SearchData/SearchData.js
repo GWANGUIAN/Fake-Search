@@ -19,6 +19,8 @@ import {
 } from '../../../actions';
 import './SearchData.css';
 import './SetComponent.css';
+import axios from 'axios';
+import checkAutoComplete from '../../../utils/checkAutoComplete';
 
 export default function SearchData({ themeColor }) {
   const {
@@ -42,14 +44,11 @@ export default function SearchData({ themeColor }) {
     order: musicOrder,
   } = useSelector((state) => state.musicReducer);
 
-  const dispatch= useDispatch();
+  const dispatch = useDispatch();
 
   const boxModal = useRef();
   const btnSection = useRef();
-  const [searchWordList, setSearchWordList] = useState([
-    { value: '김코딩', label: '김코딩', color: themeColor },
-    { value: '박해커', label: '박해커', color: themeColor },
-  ]);
+  const [searchWordList, setSearchWordList] = useState([]);
   const [modalSection, setModalSection] = useState(false);
   const [modalAdd, setModalAdd] = useState(false);
   const [openProfile, setOpenProfile] = useState(false);
@@ -57,6 +56,19 @@ export default function SearchData({ themeColor }) {
   const [openImage, setOpenImage] = useState(false);
   const [openMusic, setOpenMusic] = useState(false);
 
+  const getSeachDataList = async () => {
+    const res = await axios.get(`${process.env.REACT_APP_SERVER_API}/search`, {
+      withCredentials: true,
+    });
+    setSearchWordList(
+      res.data.map((el) => {
+        return {
+          value: el.word,
+          label: el.word,
+        };
+      })
+    );
+  };
 
   const handleClickOutside = ({ target }) => {
     if (
@@ -99,6 +111,10 @@ export default function SearchData({ themeColor }) {
     return () => {
       window.removeEventListener('click', handleClickOutside);
     };
+  }, []);
+
+  useEffect(() => {
+    getSeachDataList()
   }, []);
 
   return (
@@ -183,16 +199,18 @@ export default function SearchData({ themeColor }) {
                               <div
                                 className='box-drag'
                                 ref={provided.innerRef}
-                                
                                 {...provided.draggableProps}
                               >
                                 <div {...provided.dragHandleProps}>
-                                <FontAwesomeIcon
-                                  className='btn-drag'
-                                  icon={faGripVertical}
-                                />
+                                  <FontAwesomeIcon
+                                    className='btn-drag'
+                                    icon={faGripVertical}
+                                  />
                                 </div>
-                                <ProfileSet isOpen={openProfile} setIsOpen={setOpenProfile}/>
+                                <ProfileSet
+                                  isOpen={openProfile}
+                                  setIsOpen={setOpenProfile}
+                                />
                               </div>
                             );
                           }
@@ -201,16 +219,18 @@ export default function SearchData({ themeColor }) {
                               <div
                                 className='box-drag'
                                 ref={provided.innerRef}
-          
                                 {...provided.draggableProps}
                               >
                                 <div {...provided.dragHandleProps}>
-                                <FontAwesomeIcon
-                                  className='btn-drag'
-                                  icon={faGripVertical}
-                                />
+                                  <FontAwesomeIcon
+                                    className='btn-drag'
+                                    icon={faGripVertical}
+                                  />
                                 </div>
-                                <NewsSet isOpen={openNews} setIsOpen={setOpenNews}/>
+                                <NewsSet
+                                  isOpen={openNews}
+                                  setIsOpen={setOpenNews}
+                                />
                               </div>
                             );
                           }
@@ -219,16 +239,18 @@ export default function SearchData({ themeColor }) {
                               <div
                                 className='box-drag'
                                 ref={provided.innerRef}
-                
                                 {...provided.draggableProps}
                               >
                                 <div {...provided.dragHandleProps}>
-                                <FontAwesomeIcon
-                                  className='btn-drag'
-                                  icon={faGripVertical}
-                                />
+                                  <FontAwesomeIcon
+                                    className='btn-drag'
+                                    icon={faGripVertical}
+                                  />
                                 </div>
-                                <ImageSet isOpen={openImage} setIsOpen={setOpenImage}/>
+                                <ImageSet
+                                  isOpen={openImage}
+                                  setIsOpen={setOpenImage}
+                                />
                               </div>
                             );
                           }
@@ -237,17 +259,19 @@ export default function SearchData({ themeColor }) {
                               <div
                                 className='box-drag'
                                 ref={provided.innerRef}
-                                
                                 {...provided.draggableProps}
                               >
                                 <div {...provided.dragHandleProps}>
-                                <FontAwesomeIcon
-                                  className='btn-drag'
-                                  icon={faGripVertical}
-                                />
+                                  <FontAwesomeIcon
+                                    className='btn-drag'
+                                    icon={faGripVertical}
+                                  />
                                 </div>
 
-                                <MusicSet isOpen={openMusic} setIsOpen={setOpenMusic}/>
+                                <MusicSet
+                                  isOpen={openMusic}
+                                  setIsOpen={setOpenMusic}
+                                />
                               </div>
                             );
                           } else {
@@ -359,6 +383,50 @@ function ModalSection({ themeColor, boxModal, modalSection }) {
 }
 
 function AddSeachWord({ themeColor, setModalAdd }) {
+  const [searchWord, setSearchWord] = useState('');
+  const [isChecked, setIsChecked] = useState(true);
+  const [alertText, setAlertText] = useState(
+    '검색어는 최대 16자까지 가능합니다. (자음,모음 불가)'
+  );
+
+  const addSearhData = async () => {
+    if (searchWord !== '' && isChecked) {
+      const res = await axios.post(
+        `${process.env.REACT_APP_SERVER_API}/search`,
+        { word: searchWord },
+        {
+          withCredentials: true,
+        }
+      );
+      if (res.status === 200) {
+        await setAlertText('이미 등록된 단어입니다.');
+        await setIsChecked(false);
+      } else if (res.status === 201) {
+        await setSearchWord('');
+        await axios
+          .get(`${process.env.REACT_APP_SERVER_API}/auto`, {
+            withCredentials: true,
+          })
+          .then((res) => {
+            // setAutoCompleteList(res.data);
+            setModalAdd(false);
+          });
+      }
+    }
+  };
+
+  const handleCheck = (e) => {
+    setSearchWord(e.target.value);
+    setAlertText(
+      '자동완성 검색어는 최대 16자까지 가능합니다. (자음,모음 불가)'
+    );
+    if (e.target.value === '') {
+      setIsChecked(true);
+    } else {
+      setIsChecked(checkAutoComplete(e.target.value));
+    }
+  };
+
   return (
     <div className='bg-modal'>
       <div className='add-container'>
@@ -371,11 +439,31 @@ function AddSeachWord({ themeColor, setModalAdd }) {
           <FontAwesomeIcon icon={faTimesCircle}></FontAwesomeIcon>
         </div>
         <div className='box-input-add'>
-          <input type='text' id='input-new-word' />
-          <div id='message'>검색어를 입력하세요</div>
+          <input
+            type='text'
+            id='input-new-word'
+            value={searchWord}
+            onChange={handleCheck}
+            onKeyPress={(e) => {
+              if (e.key === 'Enter') {
+                addSearhData();
+              }
+            }}
+          />
+          <div id={isChecked ? 'message-hidden' : 'message'}>{alertText}</div>
           <button
-            id='btn-add-seachword'
-            style={{ backgroundColor: themeColor }}
+            id={
+              isChecked && searchWord !== ''
+                ? 'btn-add-seachword'
+                : 'btn-add-seachword-none'
+            }
+            style={{
+              backgroundColor:
+                isChecked && searchWord !== ''
+                  ? themeColor
+                  : 'rgb(190, 190, 190)',
+            }}
+            onClick={addSearhData}
           >
             추가
           </button>

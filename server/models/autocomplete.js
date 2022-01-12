@@ -11,6 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       AutoComplete.belongsTo(models.User,{
+        foreignKey: "userId",
         onDelete: "CASCADE",
       })
       // define association here
