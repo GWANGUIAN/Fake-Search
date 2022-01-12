@@ -5,6 +5,8 @@ const loginReducer = (
     isLogin: false,
     oauth: '',
     id: '',
+    siteName: 'FAKESEARCH',
+    themeColor: '#2260FF',
   },
   action
 ) => {
@@ -12,9 +14,7 @@ const loginReducer = (
     case LOGIN:
       return {
         ...state,
-        isLogin: true,
-        oauth: action.payload.oauth,
-        id: action.payload.id,
+        ...action.payload,
       };
     case LOGOUT:
       return {
@@ -22,6 +22,8 @@ const loginReducer = (
         isLogin: false,
         oauth: '',
         id: '',
+        siteName: 'FAKESEARCH',
+        themeColor: '#2260FF',
       };
 
     default:

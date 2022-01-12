@@ -1,8 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useHistory } from 'react-router-dom';
 import AlertLogin from '../components/Main/AlertLogin';
 import Login from './Login';
+import { useSelector } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCog, faSearch } from '@fortawesome/free-solid-svg-icons';
+import axios from 'axios'
 import './Main.css';
 
 export default function Main() {
@@ -11,14 +14,13 @@ export default function Main() {
   const login = useRef();
   const btnSetting = useRef();
   const btnLogin = useRef();
-  const [siteName, setSiteName] = useState('');
-  const [isLogin, setIsLogin] = useState(1);
+  const { isLogin, siteName, themeColor } = useSelector((state) => state.loginReducer)
   const [searchWord, setSearchWord] = useState('');
-  const [themeColor, setThemeColor] = useState('#2260FF');
   const [autoComplete, setAutoComplete] = useState(['가', '가나', '가나다']);
   const [modal, setModal] = useState(false);
   const [focus, setFocus] = useState(false);
   const [loginModal, setLoginModal] = useState(false)
+  const history = useHistory();
   
   const handleClickOutside = ({ target }) => {
     if (!btnSetting.current.contains(target) && !notification.current.contains(target)) setModal(false);
@@ -37,8 +39,12 @@ const updateTitle = () => {
   htmlTitle.innerHTML = 'FAKESEARCH';
 };
 
+const hadleLogout = () => {
+  axios.post(`${process.env.REACT_APP_SERVER_API}/users/logout`, '', {withCredentials: true})
+  .then(()=>{window.location.reload()})
+}
+
   useEffect(() => {
-    setSiteName('FAKESEARCH');
     updateTitle()
   }, []);
 
@@ -50,17 +56,19 @@ const updateTitle = () => {
     <>
       <div className='main-container'>
         <div className='navBar-container'>
-          {isLogin === 0 ? (
-            ''
-          ) : isLogin === 1 ? (
+          {!isLogin ? (
             <div className='btn-login' ref={btnLogin} onClick={()=>{setLoginModal(true)}}>로그인</div>
           ) : (
-            <div className='btn-logout'>로그아웃</div>
+            <div className='btn-logout' onClick={hadleLogout}>로그아웃</div>
           )}
           <div
             className={modal ? 'box-setting on' : 'box-setting'}
             onClick={() => {
-              setModal(!modal);
+              if(!isLogin) {
+                setModal(!modal);
+              } else {
+                history.push('/setting')
+              }
             }}
             ref={btnSetting}
           >
@@ -75,6 +83,7 @@ const updateTitle = () => {
           <div className='search-box hidden'>
             <div
               className={focus ? 'search-box-auto focus' : 'search-box-auto'}
+              style={{border: `2px solid ${themeColor}`}}
             >
               <div
                 className={
