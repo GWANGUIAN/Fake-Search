@@ -37,6 +37,14 @@ export default function Site() {
       .then (()=>{
         dispatch(login({siteName : siteNameForm}))
         setNicknameForm('')
+        axios
+      .get(`${process.env.REACT_APP_SERVER_API}/users/auth`, {
+        withCredentials: true,
+      })
+      .then((res) => {
+          const htmlTitle = document.querySelector('title');
+          htmlTitle.innerHTML = res.data.siteName;
+      })
       })
     }
   }

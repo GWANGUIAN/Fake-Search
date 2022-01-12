@@ -26,6 +26,7 @@ export default function Setting() {
           style={{
             borderLeft: tabMenu === 0 ? `5px solid ${themeColor}` : '',
             paddingLeft: tabMenu === 0 ? '10px' : '15px',
+            fontWeight: tabMenu === 0 ? '600' : '',
           }}
           onClick={()=>{setTabMenu(0)}}
         >
@@ -36,6 +37,7 @@ export default function Setting() {
           style={{
             borderLeft: tabMenu === 1 ? `5px solid ${themeColor}` : '',
             paddingLeft: tabMenu === 1 ? '10px' : '15px',
+            fontWeight: tabMenu === 1 ? '600' : '',
           }}
           onClick={()=>{setTabMenu(1)}}
         >
@@ -46,6 +48,7 @@ export default function Setting() {
           style={{
             borderLeft: tabMenu === 2 ? `5px solid ${themeColor}` : '',
             paddingLeft: tabMenu === 2 ? '10px' : '15px',
+            fontWeight: tabMenu === 2 ? '600' : '',
           }}
           onClick={()=>{setTabMenu(2)}}
         >

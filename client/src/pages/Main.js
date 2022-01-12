@@ -2,54 +2,66 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useHistory } from 'react-router-dom';
 import AlertLogin from '../components/Main/AlertLogin';
 import Login from './Login';
+import Footer from './Footer';
 import { useSelector } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCog, faSearch } from '@fortawesome/free-solid-svg-icons';
-import axios from 'axios'
+import filterAutoComplete from '../utils/filterAutoComplete';
+import axios from 'axios';
 import './Main.css';
 
 export default function Main() {
-  
   const notification = useRef();
   const login = useRef();
   const btnSetting = useRef();
   const btnLogin = useRef();
-  const { isLogin, siteName, themeColor } = useSelector((state) => state.loginReducer)
+  const { isLogin, siteName, themeColor } = useSelector(
+    (state) => state.loginReducer
+  );
   const [searchWord, setSearchWord] = useState('');
-  const [autoComplete, setAutoComplete] = useState(['가', '가나', '가나다']);
+  const [autoComplete, setAutoComplete] = useState([]);
   const [modal, setModal] = useState(false);
   const [focus, setFocus] = useState(false);
-  const [loginModal, setLoginModal] = useState(false)
+  const [loginModal, setLoginModal] = useState(false);
   const history = useHistory();
-  
+
   const handleClickOutside = ({ target }) => {
-    if (!btnSetting.current.contains(target) && !notification.current.contains(target)) setModal(false);
-    if(!btnLogin.current.contains(target) && !login.current.contains(target)) setLoginModal(false);
+    if (
+      !btnSetting.current.contains(target) &&
+      !notification.current.contains(target)
+    )
+      setModal(false);
+    if (!btnLogin.current.contains(target) && !login.current.contains(target))
+      setLoginModal(false);
   };
-
-useEffect(() => {
-  window.addEventListener("click", handleClickOutside);
-  return () => {
-    window.removeEventListener("click", handleClickOutside);
-  };
-}, []);
-
-const updateTitle = () => {
-  const htmlTitle = document.querySelector("title");
-  htmlTitle.innerHTML = 'FAKESEARCH';
-};
-
-const hadleLogout = () => {
-  axios.post(`${process.env.REACT_APP_SERVER_API}/users/logout`, '', {withCredentials: true})
-  .then(()=>{window.location.reload()})
-}
 
   useEffect(() => {
-    updateTitle()
+    window.addEventListener('click', handleClickOutside);
+    return () => {
+      window.removeEventListener('click', handleClickOutside);
+    };
   }, []);
 
-  const handleSeachWord = (e) => {
+  const hadleLogout = () => {
+    axios
+      .post(`${process.env.REACT_APP_SERVER_API}/users/logout`, '', {
+        withCredentials: true,
+      })
+      .then(() => {
+        window.location.reload();
+      });
+  };
+
+  const handleSeachWord = async (e) => {
     setSearchWord(e.target.value);
+    if (filterAutoComplete(e.target.value) !== '' && e.target.value.replace(/(\s*)/g, "")!=='') {
+      const word = filterAutoComplete(e.target.value);
+      const res = await axios.get(
+        `${process.env.REACT_APP_SERVER_API}/auto/${word}`,
+        { withCredentials: true }
+      );
+      setAutoComplete(res.data);
+    }
   };
 
   return (
@@ -57,33 +69,43 @@ const hadleLogout = () => {
       <div className='main-container'>
         <div className='navBar-container'>
           {!isLogin ? (
-            <div className='btn-login' ref={btnLogin} onClick={()=>{setLoginModal(true)}}>로그인</div>
+            <div
+              className='btn-login'
+              ref={btnLogin}
+              onClick={() => {
+                setLoginModal(true);
+              }}
+            >
+              로그인
+            </div>
           ) : (
-            <div className='btn-logout' onClick={hadleLogout}>로그아웃</div>
+            <div className='btn-logout' onClick={hadleLogout}>
+              로그아웃
+            </div>
           )}
           <div
             className={modal ? 'box-setting on' : 'box-setting'}
             onClick={() => {
-              if(!isLogin) {
+              if (!isLogin) {
                 setModal(!modal);
               } else {
-                history.push('/setting')
+                history.push('/setting');
               }
             }}
             ref={btnSetting}
           >
             <FontAwesomeIcon className='btn-setting' icon={faCog} />
           </div>
-          <AlertLogin  el={notification} modal={modal}/>
+          <AlertLogin el={notification} modal={modal} />
         </div>
         <div className='searchForm-container'>
-          <div className='logo' style={{ color: themeColor }}>
+          <div className='logo' style={{ color: themeColor }} onClick={()=>{}}>
             {siteName}
           </div>
           <div className='search-box hidden'>
             <div
               className={focus ? 'search-box-auto focus' : 'search-box-auto'}
-              style={{border: `2px solid ${themeColor}`}}
+              style={{ border: `2px solid ${themeColor}` }}
             >
               <div
                 className={
@@ -117,7 +139,7 @@ const hadleLogout = () => {
                     return (
                       <AutoList
                         key={id}
-                        word={el}
+                        el={el}
                         searchWord={searchWord}
                         themeColor={themeColor}
                       ></AutoList>
@@ -127,12 +149,15 @@ const hadleLogout = () => {
           </div>
         </div>
       </div>
-      {loginModal&&<Login login={login} siteName={siteName} themeColor={themeColor}/>}
+      {loginModal && (
+        <Login login={login} siteName={siteName} themeColor={themeColor} />
+      )}
+      <Footer/>
     </>
   );
 }
 
-function AutoList({ word, searchWord, themeColor }) {
+function AutoList({ el, searchWord, themeColor }) {
   return (
     <div className='list-auto'>
       <button className='searchButton' onClick={() => {}}>
@@ -140,9 +165,9 @@ function AutoList({ word, searchWord, themeColor }) {
       </button>
       <div id='text-auto'>
         <span id='part-search' style={{ color: themeColor, fontWeight: '550' }}>
-          {searchWord}
+          {filterAutoComplete(searchWord)}
         </span>
-        <span id='part-auto'>{word.slice(searchWord.length, word.length)}</span>
+        <span id='part-auto'>{el.word.slice(searchWord.length, filterAutoComplete(el.word).length)}</span>
       </div>
     </div>
   );

@@ -1,3 +1,3 @@
 module.exports = {
-    imageUpload : require('./imageUpload.js')
+    imageUpload : require('./imageUpload')
   };

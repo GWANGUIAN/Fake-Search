@@ -126,6 +126,8 @@
     top: 4px;
     right: 4px;
     font-size: 1.2em;
+    background-color: white;
+    border-radius: 50%;
 }
 
 .profileset-container .box-detail-text{
@@ -251,6 +253,8 @@
     color: rgb(78, 78, 78);
     top: 3px;
     right: 3px;
+    background-color: white;
+    border-radius: 50%;
 }
 
 .profileset-container .title-subinfo-content{
@@ -407,6 +411,8 @@
     top: 6px;
     right: 8px;
     font-size: 1.2em;
+    background-color: white;
+    border-radius: 50%;
 }
 
 .newsset-container .btn-delete-news{
@@ -497,6 +503,8 @@
 
 .imageset-container .btn-delete-img{
     color: rgb(78, 78, 78);
+    background-color: white;
+    border-radius: 50%;
     cursor: pointer;
     position:absolute;
     top: 6px;
@@ -557,6 +565,8 @@
     color: rgb(78, 78, 78);
     cursor: pointer;
     position:absolute;
+    background-color: white;
+    border-radius: 50%;
     top: 6px;
     right: 6px;
     font-size: 1.2em;
