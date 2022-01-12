@@ -4,7 +4,8 @@ const express = require("express");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const multer = require("multer");
-const postRouter = require("./router/postRouter.js");
+const postRouter = require("./router/postRouter");
+const userRouter = require("./router/userRouter");
 
 /*sequelize 설정*/
 const sequelize = new Sequelize(
@@ -57,6 +58,7 @@ app.use([express.static("public"), upload.array("files")]);
 app.use(cors(corsOptions));
 
 app.use("/post", postRouter);
+app.use("/users", userRouter);
 
 let server = app.listen(process.env.PORT, () => {
   console.log(`🚀 Server is starting on ${process.env.PORT}`);

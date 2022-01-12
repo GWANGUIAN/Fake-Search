@@ -31,7 +31,6 @@
   width: 100%;
   height: 100%;
   max-width: 250px;
-  text-align: right;
   font-size: 1.2em;
   color: rgb(82, 82, 82);
   font-family: 'Noto Sans KR';
@@ -56,6 +55,27 @@
 
 .site-container #btn-submit:hover {
   background-color: inherit;
+}
+
+.site-container #btn-submit-none {
+  border: inherit;
+  outline: inherit;
+  width: 90px;
+  height: 90%;
+  border-radius: 5px;
+  color: rgb(255, 255, 255);
+  font-size: 1.05em;
+  font-weight: 500;
+}
+
+.site-container .text-alert{
+  margin-top: 7px;
+  font-size: 0.9em;
+  color: rgb(231, 92, 92);
+}
+
+.site-container .text-alert-hidden{
+  visibility: hidden;
 }
 
 .site-container .title-theme {

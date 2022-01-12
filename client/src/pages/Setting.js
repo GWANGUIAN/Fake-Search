@@ -1,21 +1,25 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import Site from '../components/Setting/Site/Site'
 import AutoComplete from '../components/Setting/AutoComplete/AutoComplete'
 import SearchData from '../components/Setting/SearchData/SearchData'
+import { useSelector } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import './Setting.css';
 
 export default function Setting() {
-  const [themeColor, setThemeColor] = useState('#2260FF');
-  const [tabMenu, setTabMenu] = useState(2);
+
+  const history = useHistory();
+  const {themeColor} = useSelector((state)=>state.loginReducer)
+  const [tabMenu, setTabMenu] = useState(0);
 
   return (
-    <div className='setting-container' style={{ backgroundColor: '#B1C2E2' }}>
+    <div className='setting-container' style={{ backgroundColor: `${themeColor}35` }}>
       <div className='box-menu'>
         <div className='btn-back'>
-          <FontAwesomeIcon id='icon-back' icon={faArrowLeft}></FontAwesomeIcon>
-          <div id='text-back'>돌아가기</div>
+          <FontAwesomeIcon id='icon-back' icon={faArrowLeft} onClick={()=>{history.push('/')}} />
+          <div id='text-back' onClick={()=>{history.push('/')}}>돌아가기</div>
         </div>
         <div
           className='btn-site menu'
