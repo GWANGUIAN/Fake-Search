@@ -58,13 +58,6 @@ export default function SearchData({ themeColor }) {
   const [openMusic, setOpenMusic] = useState(false);
 
 
-  const [todos, setTodos] = useState([
-    { id: '1', title: '프로필' },
-    { id: '2', title: '뉴스' },
-    { id: '3', title: '이미지' },
-    { id: '4', title: '음악' },
-  ]);
-
   const handleClickOutside = ({ target }) => {
     if (
       !boxModal.current.contains(target) &&

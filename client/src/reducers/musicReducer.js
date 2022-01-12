@@ -8,7 +8,7 @@ const musicReducer = (
     info: '',
     date: '',
     order: 4,
-    title: 're:wind',
+    title: '',
     artist: ''
   },
   action
