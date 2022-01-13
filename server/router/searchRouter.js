@@ -3,7 +3,7 @@ const express = require("express");
 const router = express.Router();
 
 router.get('/', getSeachList)
-router.get('/:word', getSearch)
+router.get('/word', getSearch)
 router.post('/', insert)
 router.patch('/', update)
 router.delete('/', remove)

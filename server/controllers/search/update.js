@@ -5,25 +5,31 @@ const { Op } = require("sequelize");
 module.exports = async (req, res) => {
   try {
     const response = await getAccessToken(req, res);
-    const {id} = req.body
-    if(!id) {
-        return res.status(400).json({
-            data: null,
-            error: {
-              path: "/users/site-name",
-              message: "no auto-complete data",
-            },
-          });
-    }
-     await SearchData.destroy({
-        where: {
-          [Op.and]: [
-            {userId: response.dataValues.id},
-            {id}
-          ]
+    console.log(req.body);
+    const { word, profile, news, image, music } = req.body;
+    if (!word) {
+      return res.status(400).json({
+        data: null,
+        error: {
+          path: "/search",
+          message: "no search data",
         },
       });
-    res.status(200).end();
+    }
+    await SearchData.update(
+      {
+        profile,
+        news,
+        image,
+        music,
+      },
+      {
+        where: {
+          [Op.and]: [{ userId: response.dataValues.id }, { word }],
+        },
+      }
+    );
+    res.status(204).end();
   } catch (err) {
     if (err instanceof ReferenceError) {
       return res.status(400).json({

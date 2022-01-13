@@ -4,7 +4,7 @@ const { Op } = require("sequelize");
 
 module.exports = async (req, res) => {
   try {
-    const { word } = req.params;
+    const { word } = req.query;
     const response = await getAccessToken(req, res);
     if (!word) {
       return res.status(400).json({

@@ -57,10 +57,14 @@ export default function Main() {
     if (filterAutoComplete(e.target.value) !== '' && e.target.value.replace(/(\s*)/g, "")!=='') {
       const word = filterAutoComplete(e.target.value);
       const res = await axios.get(
-        `${process.env.REACT_APP_SERVER_API}/auto/${word}`,
-        { withCredentials: true }
+        `${process.env.REACT_APP_SERVER_API}/auto/filtered`,
+        { params: {word},
+          withCredentials: true }
       );
       setAutoComplete(res.data);
+    }
+    if(filterAutoComplete(e.target.value).replace(/(\s*)/g, "") === '') {
+      setAutoComplete([])
     }
   };
 
@@ -135,7 +139,7 @@ export default function Main() {
               </div>
               {searchWord === '' && autoComplete.length !== 0
                 ? ''
-                : autoComplete.map((el, id) => {
+                : focus&&autoComplete.map((el, id) => {
                     return (
                       <AutoList
                         key={id}
@@ -167,7 +171,7 @@ function AutoList({ el, searchWord, themeColor }) {
         <span id='part-search' style={{ color: themeColor, fontWeight: '550' }}>
           {filterAutoComplete(searchWord)}
         </span>
-        <span id='part-auto'>{el.word.slice(searchWord.length, filterAutoComplete(el.word).length)}</span>
+        <span id='part-auto'>{el.word.slice(filterAutoComplete(searchWord).length, el.word.length)}</span>
       </div>
     </div>
   );

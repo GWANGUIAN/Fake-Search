@@ -17,13 +17,13 @@
 }
 
 .main-container .btn-login{
-    margin: 0 10px 0 10px;
+    margin: 0 10px 0 auto;
     color:rgb(53, 53, 53);
     font-size: 1.1em;
     cursor: pointer;
 }
 .main-container .btn-logout{
-    margin: 0 10px 0 10px;
+    margin: 0 10px 0 auto;
     color:rgb(53, 53, 53);
     font-size: 1.1em;
     cursor: pointer;
@@ -57,7 +57,7 @@
     align-items: center;
     margin: 0 auto;
     width: 100%;
-    padding-bottom: 11%;
+    padding-bottom: 8%;
 }
 
 .main-container .logo{

@@ -1,0 +1,64 @@
+/*검색결과 없음*/
+.notfound-container {
+    margin: 10px 10px;
+    background-color: white;
+    border-radius: 20px;
+    padding: 70px 40px;
+    border: 2px solid rgb(235, 235, 235)
+}
+
+.notfound-container .text-title{
+    margin-left: 30px;
+    margin-bottom: 40px;
+    font-size: 1.3em;
+    font-weight: 500;
+}
+
+.notfound-container #text-word{
+    color:rgb(230, 103, 29)
+}
+
+.notfound-container ul{
+    margin-left: 25px;
+    font-size: 1.1em;
+    color: rgb(104, 104, 104);
+}
+.notfound-container li{
+    margin-bottom: 5px;
+}
+
+/*프로필*/
+.profil-container {
+    margin: 10px 10px;
+    background-color: white;
+    border-radius: 20px;
+    padding: 70px 40px;
+    border: 2px solid rgb(235, 235, 235)
+}
+
+/*뉴스*/
+.news-container {
+    margin: 10px 10px;
+    background-color: white;
+    border-radius: 20px;
+    padding: 70px 40px;
+    border: 2px solid rgb(235, 235, 235)
+}
+
+/*이미지*/
+.image-container {
+    margin: 10px 10px;
+    background-color: white;
+    border-radius: 20px;
+    padding: 70px 40px;
+    border: 2px solid rgb(235, 235, 235)
+}
+
+/*음악*/
+.music-container {
+    margin: 10px 10px;
+    background-color: white;
+    border-radius: 20px;
+    padding: 70px 40px;
+    border: 2px solid rgb(235, 235, 235)
+}
