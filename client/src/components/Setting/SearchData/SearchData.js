@@ -3,6 +3,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faTimesCircle,
   faGripVertical,
+  faCheckCircle,
+  faTrash,
 } from '@fortawesome/free-solid-svg-icons';
 import Select from 'react-select';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
@@ -16,6 +18,10 @@ import {
   changeNews,
   changeImage,
   changeMusic,
+  resetProfile,
+  resetNews,
+  resetImage,
+  resetMusic,
 } from '../../../actions';
 import './SearchData.css';
 import './SetComponent.css';
@@ -23,38 +29,39 @@ import axios from 'axios';
 import checkAutoComplete from '../../../utils/checkAutoComplete';
 
 export default function SearchData({ themeColor }) {
-  const {
-    type: profileType,
-    view: profileView,
-    order: profileOrder,
-  } = useSelector((state) => state.profileReducer);
-  const {
-    type: newsType,
-    view: newsView,
-    order: newsOrder,
-  } = useSelector((state) => state.newsReducer);
-  const {
-    type: imageType,
-    view: imageView,
-    order: imageOrder,
-  } = useSelector((state) => state.imageReducer);
-  const {
-    type: musicType,
-    view: musicView,
-    order: musicOrder,
-  } = useSelector((state) => state.musicReducer);
+  const { view: profileView, order: profileOrder } = useSelector(
+    (state) => state.profileReducer
+  );
+  const { view: newsView, order: newsOrder } = useSelector(
+    (state) => state.newsReducer
+  );
+  const { view: imageView, order: imageOrder } = useSelector(
+    (state) => state.imageReducer
+  );
+  const { view: musicView, order: musicOrder } = useSelector(
+    (state) => state.musicReducer
+  );
+
+  const profileReducer = useSelector((state) => state.profileReducer);
+  const newsReducer = useSelector((state) => state.newsReducer);
+  const imageReducer = useSelector((state) => state.imageReducer);
+  const musicReducer = useSelector((state) => state.musicReducer);
 
   const dispatch = useDispatch();
-
   const boxModal = useRef();
   const btnSection = useRef();
   const [searchWordList, setSearchWordList] = useState([]);
+  const [selected, setSelected] = useState('');
   const [modalSection, setModalSection] = useState(false);
   const [modalAdd, setModalAdd] = useState(false);
+  const [modalSave, setModalSave] = useState(false);
+  const [confirmDelete, setConfirmDelete] = useState(false);
+  const [modalDelete, setModalDelete] = useState(false);
   const [openProfile, setOpenProfile] = useState(false);
   const [openNews, setOpenNews] = useState(false);
   const [openImage, setOpenImage] = useState(false);
   const [openMusic, setOpenMusic] = useState(false);
+  const [resetDrag, setResetDrag] = useState(false);
 
   const getSeachDataList = async () => {
     const res = await axios.get(`${process.env.REACT_APP_SERVER_API}/search`, {
@@ -68,6 +75,27 @@ export default function SearchData({ themeColor }) {
         };
       })
     );
+  };
+
+  const selectSearchData = async (e) => {
+    setSelected(e);
+    setResetDrag(true);
+    setOpenProfile(false);
+    setOpenNews(false);
+    setOpenImage(false);
+    setOpenMusic(false);
+    const res = await axios.get(
+      `${process.env.REACT_APP_SERVER_API}/search/word`,
+      {
+        params: { word: e.value },
+        withCredentials: true,
+      }
+    );
+    dispatch(changeProfile(res.data.profile));
+    dispatch(changeNews(res.data.news));
+    dispatch(changeImage(res.data.image));
+    dispatch(changeMusic(res.data.music));
+    setResetDrag(false);
   };
 
   const handleClickOutside = ({ target }) => {
@@ -106,6 +134,50 @@ export default function SearchData({ themeColor }) {
     });
   };
 
+  const submitSearchData = () => {
+    axios
+      .patch(
+        `${process.env.REACT_APP_SERVER_API}/search`,
+        {
+          word: selected.value,
+          profile: profileReducer,
+          news: newsReducer,
+          image: imageReducer,
+          music: musicReducer,
+        },
+        { withCredentials: true }
+      )
+      .then(() => {
+        alertSave();
+      });
+  };
+
+  const alertSave = () => {
+    setModalSave(true);
+    setTimeout(() => {
+      setModalSave(false);
+    }, 1000);
+  };
+
+  const deleteSearchData = () => {
+    axios.delete(`${process.env.REACT_APP_SERVER_API}/search`, {
+      data:{ word: selected.value },
+      withCredentials: true
+    }).then(()=>{
+      setConfirmDelete(false);
+      setSelected('')
+      getSeachDataList();
+      alertDelete();
+    })
+  };
+
+  const alertDelete = () => {
+    setModalDelete(true);
+    setTimeout(() => {
+      setModalDelete(false);
+    }, 1000);
+  };
+
   useEffect(() => {
     window.addEventListener('click', handleClickOutside);
     return () => {
@@ -114,15 +186,32 @@ export default function SearchData({ themeColor }) {
   }, []);
 
   useEffect(() => {
-    getSeachDataList()
-  }, []);
+    dispatch(resetProfile());
+    dispatch(resetNews());
+    dispatch(resetImage());
+    dispatch(resetMusic());
+    getSeachDataList();
+  }, [dispatch]);
 
   return (
     <div className='searchdata-container'>
       <div className='box-control'>
         <div id='text-searchWord'>검색어</div>
-        <Select id='input-seachWord' options={searchWordList} />
-        <button id='btn-save' style={{ backgroundColor: themeColor }}>
+        <Select
+          id='input-seachWord'
+          options={searchWordList}
+          placeholder='검색어를 선택하세요.'
+          onChange={selectSearchData}
+          value={selected}
+        />
+        <button
+          id='btn-save'
+          style={{
+            backgroundColor:
+              selected !== '' ? themeColor : 'rgb(190, 190, 190)',
+          }}
+          onClick={submitSearchData}
+        >
           저장
         </button>
         <div id='btn-preview'>
@@ -137,7 +226,7 @@ export default function SearchData({ themeColor }) {
             + 검색어 추가
           </span>
         </div>
-        <div id='btn-delete-word'>삭제</div>
+        <div id='btn-delete-word' onClick={()=>{if(selected!=='') setConfirmDelete(true)}}>삭제</div>
       </div>
       <div className='box-section'>
         <div id='btn-add-section'>
@@ -156,147 +245,166 @@ export default function SearchData({ themeColor }) {
           />
         </div>
         <div className='setting-section'>
-          <DragDropContext onDragEnd={handleDropChange}>
-            <Droppable droppableId='sections'>
-              {(provided) => (
-                <div
-                  className='sections'
-                  {...provided.droppableProps}
-                  ref={provided.innerRef}
-                >
-                  {[
-                    {
-                      type: profileType,
-                      view: profileView,
-                      order: String(profileOrder),
-                    },
-                    {
-                      type: newsType,
-                      view: newsView,
-                      order: String(newsOrder),
-                    },
-                    {
-                      type: imageType,
-                      view: imageView,
-                      order: String(imageOrder),
-                    },
-                    {
-                      type: musicType,
-                      view: musicView,
-                      order: String(musicOrder),
-                    },
-                  ]
-                    .sort((a, b) => {
-                      if (a.order > b.order) return 1;
-                      else if (a.order < b.order) return -1;
-                      else return 0;
-                    })
-                    .map(({ type, view, order }, index) => (
-                      <Draggable key={order} draggableId={order} index={index}>
-                        {(provided) => {
-                          if (type === 'profile' && view) {
-                            return (
-                              <div
-                                className='box-drag'
-                                ref={provided.innerRef}
-                                {...provided.draggableProps}
-                              >
-                                <div {...provided.dragHandleProps}>
-                                  <FontAwesomeIcon
-                                    className='btn-drag'
-                                    icon={faGripVertical}
+          {!resetDrag && (
+            <DragDropContext onDragEnd={handleDropChange}>
+              <Droppable droppableId='sections'>
+                {(provided) => (
+                  <div
+                    className='sections'
+                    {...provided.droppableProps}
+                    ref={provided.innerRef}
+                  >
+                    {[
+                      {
+                        type: 'profile',
+                        view: profileView,
+                        order: String(profileOrder),
+                      },
+                      {
+                        type: 'news',
+                        view: newsView,
+                        order: String(newsOrder),
+                      },
+                      {
+                        type: 'image',
+                        view: imageView,
+                        order: String(imageOrder),
+                      },
+                      {
+                        type: 'music',
+                        view: musicView,
+                        order: String(musicOrder),
+                      },
+                    ]
+                      .sort((a, b) => {
+                        if (a.order > b.order) return 1;
+                        else if (a.order < b.order) return -1;
+                        else return 0;
+                      })
+                      .map(({ type, view, order }, index) => (
+                        <Draggable
+                          key={order}
+                          draggableId={order}
+                          index={index}
+                        >
+                          {(provided) => {
+                            if (type === 'profile' && view) {
+                              return (
+                                <div
+                                  className='box-drag'
+                                  ref={provided.innerRef}
+                                  {...provided.draggableProps}
+                                >
+                                  <div {...provided.dragHandleProps}>
+                                    <FontAwesomeIcon
+                                      className='btn-drag'
+                                      icon={faGripVertical}
+                                    />
+                                  </div>
+                                  <ProfileSet
+                                    isOpen={openProfile}
+                                    setIsOpen={setOpenProfile}
                                   />
                                 </div>
-                                <ProfileSet
-                                  isOpen={openProfile}
-                                  setIsOpen={setOpenProfile}
-                                />
-                              </div>
-                            );
-                          }
-                          if (type === 'news' && view) {
-                            return (
-                              <div
-                                className='box-drag'
-                                ref={provided.innerRef}
-                                {...provided.draggableProps}
-                              >
-                                <div {...provided.dragHandleProps}>
-                                  <FontAwesomeIcon
-                                    className='btn-drag'
-                                    icon={faGripVertical}
+                              );
+                            }
+                            if (type === 'news' && view) {
+                              return (
+                                <div
+                                  className='box-drag'
+                                  ref={provided.innerRef}
+                                  {...provided.draggableProps}
+                                >
+                                  <div {...provided.dragHandleProps}>
+                                    <FontAwesomeIcon
+                                      className='btn-drag'
+                                      icon={faGripVertical}
+                                    />
+                                  </div>
+                                  <NewsSet
+                                    isOpen={openNews}
+                                    setIsOpen={setOpenNews}
                                   />
                                 </div>
-                                <NewsSet
-                                  isOpen={openNews}
-                                  setIsOpen={setOpenNews}
-                                />
-                              </div>
-                            );
-                          }
-                          if (type === 'image' && view) {
-                            return (
-                              <div
-                                className='box-drag'
-                                ref={provided.innerRef}
-                                {...provided.draggableProps}
-                              >
-                                <div {...provided.dragHandleProps}>
-                                  <FontAwesomeIcon
-                                    className='btn-drag'
-                                    icon={faGripVertical}
+                              );
+                            }
+                            if (type === 'image' && view) {
+                              return (
+                                <div
+                                  className='box-drag'
+                                  ref={provided.innerRef}
+                                  {...provided.draggableProps}
+                                >
+                                  <div {...provided.dragHandleProps}>
+                                    <FontAwesomeIcon
+                                      className='btn-drag'
+                                      icon={faGripVertical}
+                                    />
+                                  </div>
+                                  <ImageSet
+                                    isOpen={openImage}
+                                    setIsOpen={setOpenImage}
                                   />
                                 </div>
-                                <ImageSet
-                                  isOpen={openImage}
-                                  setIsOpen={setOpenImage}
-                                />
-                              </div>
-                            );
-                          }
-                          if (type === 'music' && view) {
-                            return (
-                              <div
-                                className='box-drag'
-                                ref={provided.innerRef}
-                                {...provided.draggableProps}
-                              >
-                                <div {...provided.dragHandleProps}>
-                                  <FontAwesomeIcon
-                                    className='btn-drag'
-                                    icon={faGripVertical}
-                                  />
-                                </div>
+                              );
+                            }
+                            if (type === 'music' && view) {
+                              return (
+                                <div
+                                  className='box-drag'
+                                  ref={provided.innerRef}
+                                  {...provided.draggableProps}
+                                >
+                                  <div {...provided.dragHandleProps}>
+                                    <FontAwesomeIcon
+                                      className='btn-drag'
+                                      icon={faGripVertical}
+                                    />
+                                  </div>
 
-                                <MusicSet
-                                  isOpen={openMusic}
-                                  setIsOpen={setOpenMusic}
-                                />
-                              </div>
-                            );
-                          } else {
-                            return (
-                              <div
-                                className='box-drag'
-                                ref={provided.innerRef}
-                                {...provided.dragHandleProps}
-                                {...provided.draggableProps}
-                              ></div>
-                            );
-                          }
-                        }}
-                      </Draggable>
-                    ))}
-                  {provided.placeholder}
-                </div>
-              )}
-            </Droppable>
-          </DragDropContext>
+                                  <MusicSet
+                                    isOpen={openMusic}
+                                    setIsOpen={setOpenMusic}
+                                  />
+                                </div>
+                              );
+                            } else {
+                              return (
+                                <div
+                                  className='box-drag'
+                                  ref={provided.innerRef}
+                                  {...provided.dragHandleProps}
+                                  {...provided.draggableProps}
+                                ></div>
+                              );
+                            }
+                          }}
+                        </Draggable>
+                      ))}
+                    {provided.placeholder}
+                  </div>
+                )}
+              </Droppable>
+            </DragDropContext>
+          )}
         </div>
       </div>
       {modalAdd && (
-        <AddSeachWord setModalAdd={setModalAdd} themeColor={themeColor} />
+        <AddSeachWord
+          setModalAdd={setModalAdd}
+          themeColor={themeColor}
+          getSeachDataList={getSeachDataList}
+        />
       )}
+      <ModalSave modalSave={modalSave} />
+      {confirmDelete && (
+        <ConfirmDelete
+          themeColor={themeColor}
+          setConfirmDelete={setConfirmDelete}
+          deleteSearchData={deleteSearchData}
+        />
+      )}
+      <ModalDelete modalDelete={modalDelete} />
     </div>
   );
 }
@@ -382,7 +490,7 @@ function ModalSection({ themeColor, boxModal, modalSection }) {
   );
 }
 
-function AddSeachWord({ themeColor, setModalAdd }) {
+function AddSeachWord({ themeColor, setModalAdd, getSeachDataList }) {
   const [searchWord, setSearchWord] = useState('');
   const [isChecked, setIsChecked] = useState(true);
   const [alertText, setAlertText] = useState(
@@ -407,8 +515,8 @@ function AddSeachWord({ themeColor, setModalAdd }) {
           .get(`${process.env.REACT_APP_SERVER_API}/auto`, {
             withCredentials: true,
           })
-          .then((res) => {
-            // setAutoCompleteList(res.data);
+          .then(() => {
+            getSeachDataList();
             setModalAdd(false);
           });
       }
@@ -469,6 +577,70 @@ function AddSeachWord({ themeColor, setModalAdd }) {
           </button>
         </div>
       </div>
+    </div>
+  );
+}
+
+function ModalSave({ modalSave }) {
+  return (
+    <div
+      className={
+        modalSave ? 'modalsave-container' : 'modalsave-container hidden'
+      }
+    >
+      <FontAwesomeIcon
+        icon={faCheckCircle}
+        className='icon-save'
+      ></FontAwesomeIcon>
+      <div className='text-save'>저장 완료</div>
+    </div>
+  );
+}
+
+function ConfirmDelete({
+  setConfirmDelete,
+  deleteSearchData,
+  themeColor,
+}) {
+  return (
+    <div className='confirmdelete-container'>
+      <FontAwesomeIcon icon={faTrash} className='icon-delete'></FontAwesomeIcon>
+      <div className='text-delete'>해당 검색어를 삭제하시겠습니까?</div>
+      <div className='box-btn-delete'>
+        <button
+          className='btn-delete-cancel'
+          onClick={() => {
+            setConfirmDelete(false);
+          }}
+        >
+          취소
+        </button>
+        <button
+          className='btn-delete-accept'
+          style={{
+            backgroundColor: themeColor,
+          }}
+          onClick={deleteSearchData}
+        >
+          확인
+        </button>
+      </div>
+    </div>
+  );
+}
+
+function ModalDelete({ modalDelete }) {
+  return (
+    <div
+      className={
+        modalDelete ? 'modaldelete-container' : 'modaldelete-container hidden'
+      }
+    >
+      <FontAwesomeIcon
+        icon={faCheckCircle}
+        className='icon-delete-complete'
+      ></FontAwesomeIcon>
+      <div className='text-delete-complete'>삭제되었습니다.</div>
     </div>
   );
 }

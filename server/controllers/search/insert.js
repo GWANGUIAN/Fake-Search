@@ -10,8 +10,8 @@ module.exports = async (req, res) => {
       return res.status(400).json({
         data: null,
         error: {
-          path: "/users/site-name",
-          message: "no auto-complete data",
+          path: "/search",
+          message: "no search data",
         },
       });
     }

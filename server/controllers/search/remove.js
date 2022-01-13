@@ -5,13 +5,13 @@ const { Op } = require("sequelize");
 module.exports = async (req, res) => {
   try {
     const response = await getAccessToken(req, res);
-    const {id} = req.body
-    if(!id) {
+    const { word } = req.body
+    if(!word) {
         return res.status(400).json({
             data: null,
             error: {
-              path: "/users/site-name",
-              message: "no auto-complete data",
+              path: "/search",
+              message: "no search data",
             },
           });
     }
@@ -19,11 +19,11 @@ module.exports = async (req, res) => {
         where: {
           [Op.and]: [
             {userId: response.dataValues.id},
-            {id}
+            {word}
           ]
         },
       });
-    res.status(200).end();
+    res.status(204).end();
   } catch (err) {
     if (err instanceof ReferenceError) {
       return res.status(400).json({
