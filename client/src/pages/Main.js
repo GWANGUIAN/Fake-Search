@@ -113,7 +113,7 @@ export default function Main() {
             >
               <div
                 className={
-                  searchWord === ''
+                  searchWord === '' || autoComplete.length===0
                     ? 'search-box-inner'
                     : 'search-box-inner border'
                 }
