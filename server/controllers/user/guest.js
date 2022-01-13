@@ -1,4 +1,3 @@
-const { useResolvedPath } = require('react-router-dom');
 const { User } = require('../../models');
 const jwt = require('jsonwebtoken')
 
