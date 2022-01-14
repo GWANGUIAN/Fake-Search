@@ -10,6 +10,8 @@ import Search from './pages/Search';
 import Setting from './pages/Setting';
 import Footer from './pages/Footer';
 import NaverLogin from './components/Login/NaverLogin';
+import Personal from './pages/Personal';
+import Use from './pages/Use';
 
 function App() {
   const dispatch = useDispatch();
@@ -58,6 +60,8 @@ function App() {
           <Route path='/search/query=:word' component={Search} />
           <Route path='/footer' component={Footer} />
           <Route path='/naver' component={NaverLogin} />
+          <Route path='/law/personal' component={Personal} />
+          <Route path='/law/use' component={Use} />
         </Switch>
       </div>
     </div>
