@@ -4,21 +4,11 @@ const { Op } = require("sequelize");
 
 module.exports = async (req, res) => {
   try {
-    const { word } = req.query;
-    const response = await getAccessToken(req, res);
-    if (!word) {
-      return res.status(400).json({
-        data: null,
-        error: {
-          path: "/auto",
-          message: "inappropriate word",
-        },
-      });
-    }
+    const { word, userId } = req.query;
     const data = await AutoComplete.findAll({
       where: {
         [Op.and]: [
-          { userId: response.dataValues.id },
+          { userId },
           {
             word: { [Op.like]: `${word}%` },
           },

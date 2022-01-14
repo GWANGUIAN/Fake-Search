@@ -15,7 +15,7 @@ export default function Main() {
   const login = useRef();
   const btnSetting = useRef();
   const btnLogin = useRef();
-  const { isLogin, siteName, themeColor } = useSelector(
+  const { isLogin, siteName, themeColor, id } = useSelector(
     (state) => state.loginReducer
   );
   const [searchWord, setSearchWord] = useState('');
@@ -61,7 +61,7 @@ export default function Main() {
       const word = filterAutoComplete(e.target.value);
       const res = await axios.get(
         `${process.env.REACT_APP_SERVER_API}/auto/filtered`,
-        { params: { word }, withCredentials: true }
+        { params: { word, userId:id }, withCredentials: true }
       );
       setAutoComplete(res.data);
     }
