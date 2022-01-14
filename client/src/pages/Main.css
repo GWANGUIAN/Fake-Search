@@ -90,6 +90,7 @@
     margin-left: 15px;
     font-size: 1em;
     color: rgb(158, 158, 158);
+    cursor: pointer;
 }
 
 .main-container .search{
@@ -165,5 +166,6 @@
     float: left;
     font-size: 1.18rem;
     line-height: 40px;
-    margin-left: 10px
+    margin-left: 10px;
+    cursor: pointer;
 }

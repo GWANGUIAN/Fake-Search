@@ -12,7 +12,7 @@ export default function Setting() {
 
   const history = useHistory();
   const {themeColor} = useSelector((state)=>state.loginReducer)
-  const [tabMenu, setTabMenu] = useState(2);
+  const [tabMenu, setTabMenu] = useState(0);
 
   return (
     <div className='setting-container' style={{ backgroundColor: `${themeColor}35` }}>

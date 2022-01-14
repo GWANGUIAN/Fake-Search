@@ -55,7 +55,7 @@ function App() {
           <Route exact path='/' component={Main} />
           <Route path='/login' component={Login} />
           <Route path='/setting' component={Setting} />
-          <Route path='/search' component={Search} />
+          <Route path='/search/query=:word' component={Search} />
           <Route path='/footer' component={Footer} />
           <Route path='/naver' component={NaverLogin} />
         </Switch>

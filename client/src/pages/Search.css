@@ -39,6 +39,7 @@
     font-weight: 1000;
     position: relative;
     max-width: 30px;
+    cursor: pointer;
 }
 
 .search-container .box-logo::before{
@@ -119,7 +120,7 @@
 
 .search-container .box-content{
     background-color: rgb(242, 245, 246);
-    height: 87.92vh;
+    min-height: 87.92vh;
 }
 
 .search-container .inner-box-content{
