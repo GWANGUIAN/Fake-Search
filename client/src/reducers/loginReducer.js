@@ -4,7 +4,7 @@ const loginReducer = (
   state = {
     isLogin: false,
     oauth: '',
-    id: '',
+    id: 'default',
     siteName: 'FAKESEARCH',
     themeColor: '#2260FF',
   },
@@ -21,7 +21,7 @@ const loginReducer = (
         ...state,
         isLogin: false,
         oauth: '',
-        id: '',
+        id: 'default',
         siteName: 'FAKESEARCH',
         themeColor: '#2260FF',
       };
