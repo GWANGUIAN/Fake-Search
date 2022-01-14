@@ -58,6 +58,7 @@ function App() {
           <Route path='/login' component={Login} />
           <Route path='/setting' component={Setting} />
           <Route path='/search/query=:word' component={Search} />
+          <Route path='/search/query=' component={Search} />
           <Route path='/footer' component={Footer} />
           <Route path='/naver' component={NaverLogin} />
           <Route path='/law/personal' component={Personal} />
