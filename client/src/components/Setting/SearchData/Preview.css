@@ -1,0 +1,131 @@
+.preview-container{
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    margin: 0 auto;
+    overflow-x: hidden;
+}
+
+.preview-container .box-menu{
+  display: flex;
+  flex-direction: column;
+
+}
+
+.preview-container .box-input{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.preview-container .box-input:hover{
+    box-shadow: 0px 5px 4px rgb(233, 233, 233);
+}
+
+.preview-container .inner-box-input{
+    position: relative;
+    max-width: 1180px;
+    display: flex;
+    align-items: center;
+    margin : 0 auto;
+    width: 100%;
+    height: 64px;
+}
+
+.preview-container .box-logo{
+    flex: 1;
+    text-align: center;
+    padding: 0px 18px 0 20px;
+    font-size: 2em;
+    font-weight: 1000;
+    position: relative;
+    max-width: 30px;
+    cursor: pointer;
+}
+
+.preview-container .box-logo::before{
+    content : "";
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translate(0%, -50%);
+  height  : 50%;
+    border-right: 0.5px solid rgb(206, 206, 206);
+}
+
+.preview-container .input-search{
+    flex: 15;
+    margin-left: 10px;
+    border: inherit;
+    font-size: 1.3em;
+    font-weight: 600;
+    vertical-align: middle;
+    min-width: none;
+}
+
+.preview-container .input-search:focus{
+    outline: none;
+}
+
+.preview-container .icon-search{
+    flex: 0.5;
+    font-size: 1.3em;
+    cursor: pointer;
+}
+
+.preview-container .box-setting{
+    flex: 0.5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 15px;
+    height: 30px;
+    max-width: 30px;
+    border-radius: 50%;
+}
+
+.preview-container .on{
+    background-color: rgb(226, 226, 226) ;
+}
+
+.preview-container .icon-setting{
+    font-size: 1.2em;
+    color: rgb(173, 173, 173);
+    cursor: pointer;
+}
+
+.preview-container .box-category{
+    box-shadow: 0px 2px 3px rgb(209, 209, 209);
+    z-index: 10;
+}
+
+.preview-container .inner-box-category{
+    max-width: 1180px;
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    height: 50px;
+    padding: 0 23px;
+}
+
+.preview-container .text-categories{
+    font-weight: 450;
+    margin: 0 10px;
+    cursor: pointer;
+}
+
+.preview-container .more{
+    color: rgb(149, 149, 149);
+}
+
+.preview-container .box-content{
+    background-color: rgb(242, 245, 246);
+    min-height: 87.92vh;
+}
+
+.preview-container .inner-box-content{
+    max-width: 1180px;
+    width: 100%;
+    margin: 0 auto;
+}

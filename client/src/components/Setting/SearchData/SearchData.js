@@ -12,6 +12,7 @@ import ProfileSet from './ProfileSet';
 import NewsSet from './NewsSet';
 import ImageSet from './ImageSet';
 import MusicSet from './MusicSet';
+import Preview from './Preview';
 import { useSelector, useDispatch } from 'react-redux';
 import {
   changeProfile,
@@ -62,6 +63,8 @@ export default function SearchData({ themeColor }) {
   const [openImage, setOpenImage] = useState(false);
   const [openMusic, setOpenMusic] = useState(false);
   const [resetDrag, setResetDrag] = useState(false);
+
+  const [windowPreview, setWindowPreview] = useState(false);
 
   const getSeachDataList = async () => {
     const res = await axios.get(`${process.env.REACT_APP_SERVER_API}/search`, {
@@ -160,15 +163,17 @@ export default function SearchData({ themeColor }) {
   };
 
   const deleteSearchData = () => {
-    axios.delete(`${process.env.REACT_APP_SERVER_API}/search`, {
-      data:{ word: selected.value },
-      withCredentials: true
-    }).then(()=>{
-      setConfirmDelete(false);
-      setSelected('')
-      getSeachDataList();
-      alertDelete();
-    })
+    axios
+      .delete(`${process.env.REACT_APP_SERVER_API}/search`, {
+        data: { word: selected.value },
+        withCredentials: true,
+      })
+      .then(() => {
+        setConfirmDelete(false);
+        setSelected('');
+        getSeachDataList();
+        alertDelete();
+      });
   };
 
   const alertDelete = () => {
@@ -215,7 +220,16 @@ export default function SearchData({ themeColor }) {
           저장
         </button>
         <div id='btn-preview'>
-          <span>미리보기</span>
+          <span
+            onClick={async () => {
+              if (selected !== '') {
+                await setWindowPreview(false);
+                await setWindowPreview(true);
+              }
+            }}
+          >
+            미리보기
+          </span>
         </div>
         <div id='btn-add-word'>
           <span
@@ -226,7 +240,14 @@ export default function SearchData({ themeColor }) {
             + 검색어 추가
           </span>
         </div>
-        <div id='btn-delete-word' onClick={()=>{if(selected!=='') setConfirmDelete(true)}}>삭제</div>
+        <div
+          id='btn-delete-word'
+          onClick={() => {
+            if (selected !== '') setConfirmDelete(true);
+          }}
+        >
+          삭제
+        </div>
       </div>
       <div className='box-section'>
         <div id='btn-add-section'>
@@ -245,7 +266,17 @@ export default function SearchData({ themeColor }) {
           />
         </div>
         <div className='setting-section'>
-          {!profileView&&!newsView&&!imageView&&!musicView&&selected!==''&&<div className='box-no-data'>설정된 데이터가 없습니다.<br/>섹션을 추가하세요.</div>}
+          {!profileView &&
+            !newsView &&
+            !imageView &&
+            !musicView &&
+            selected !== '' && (
+              <div className='box-no-data'>
+                설정된 데이터가 없습니다.
+                <br />
+                섹션을 추가하세요.
+              </div>
+            )}
           {!resetDrag && (
             <DragDropContext onDragEnd={handleDropChange}>
               <Droppable droppableId='sections'>
@@ -406,6 +437,7 @@ export default function SearchData({ themeColor }) {
         />
       )}
       <ModalDelete modalDelete={modalDelete} />
+      {windowPreview && <Preview word={selected} />}
     </div>
   );
 }
@@ -598,11 +630,7 @@ function ModalSave({ modalSave }) {
   );
 }
 
-function ConfirmDelete({
-  setConfirmDelete,
-  deleteSearchData,
-  themeColor,
-}) {
+function ConfirmDelete({ setConfirmDelete, deleteSearchData, themeColor }) {
   return (
     <div className='confirmdelete-container'>
       <FontAwesomeIcon icon={faTrash} className='icon-delete'></FontAwesomeIcon>

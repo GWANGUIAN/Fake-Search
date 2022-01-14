@@ -10,15 +10,23 @@ export default function Profile({ profileData }) {
       <div className='box-detail'>
         <div className='section-title'>프로필</div>
         <div className='box-detail-profile'>
-          <img
-            src={profileData.profileImg}
-            alt='img-profile'
-            className='img-profile'
-            onError={(e) => {
-              e.target.onerror = null;
-              e.target.src = '../../img/no-image-column.png';
-            }}
-          />
+          {profileData.profileImg !== '' ? (
+            <img
+              src={profileData.profileImg}
+              alt='img-profile'
+              className='img-profile'
+              onError={(e) => {
+                e.target.onerror = null;
+                e.target.src = '../../img/no-image-column.png';
+              }}
+            />
+          ) : (
+            <div className='img-profile'>
+              설정된 이미지가
+              <br />
+              존재하지 않습니다.
+            </div>
+          )}
           <div className='box-detail-text'>
             {profileData.info.map((el, id) => (
               <ElOfDetilText key={id} el={el} id={id} />
@@ -60,15 +68,24 @@ function BoxOfSubinfo({ el }) {
 function ElOfSubinfo({ el }) {
   return (
     <div className='el-subinfo'>
-      <img
-        src={el.image}
-        alt='img-subinfo'
-        className='img-subinfo'
-        onError={(e) => {
-          e.target.onerror = null;
-          e.target.src = '../../img/no-image-column.png';
-        }}
-      />
+      {el.image !== '' ? (
+        <img
+          src={el.image}
+          alt='img-subinfo'
+          className='img-subinfo'
+          onError={(e) => {
+            e.target.onerror = null;
+            e.target.src = '../../img/no-image-column.png';
+          }}
+        />
+      ) : (
+        <div className='img-subinfo'>
+          설정된 이미지가
+          <br />
+          존재하지 않습니다.
+        </div>
+      )}
+
       <div className='title-subinfo-content'>{el.title}</div>
     </div>
   );

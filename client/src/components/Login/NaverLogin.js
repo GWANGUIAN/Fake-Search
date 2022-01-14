@@ -1,5 +1,6 @@
 import React, { useEffect, useCallback } from 'react';
 import { useLocation } from 'react-router';
+import Loading from '../Loading/Loading';
 import './NaverLogin.css';
 import axios from 'axios';
 
@@ -28,5 +29,5 @@ export default function NaverLogin() {
     getNaverToken();
   }, [getNaverToken]);
 
-  return <div className='naverlogin-container'>{/* <Loading/> */}</div>;
+  return <div className='naverlogin-container'><Loading/></div>;
 }
