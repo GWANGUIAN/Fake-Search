@@ -54,17 +54,19 @@ export default function Main() {
 
   const handleSeachWord = async (e) => {
     setSearchWord(e.target.value);
-    if (filterAutoComplete(e.target.value) !== '' && e.target.value.replace(/(\s*)/g, "")!=='') {
+    if (
+      filterAutoComplete(e.target.value) !== '' &&
+      e.target.value.replace(/(\s*)/g, '') !== ''
+    ) {
       const word = filterAutoComplete(e.target.value);
       const res = await axios.get(
         `${process.env.REACT_APP_SERVER_API}/auto/filtered`,
-        { params: {word},
-          withCredentials: true }
+        { params: { word }, withCredentials: true }
       );
       setAutoComplete(res.data);
     }
-    if(filterAutoComplete(e.target.value).replace(/(\s*)/g, "") === '') {
-      setAutoComplete([])
+    if (filterAutoComplete(e.target.value).replace(/(\s*)/g, '') === '') {
+      setAutoComplete([]);
     }
   };
 
@@ -103,7 +105,11 @@ export default function Main() {
           <AlertLogin el={notification} modal={modal} />
         </div>
         <div className='searchForm-container'>
-          <div className='logo' style={{ color: themeColor }} onClick={()=>{}}>
+          <div
+            className='logo'
+            style={{ color: themeColor }}
+            onClick={() => {}}
+          >
             {siteName}
           </div>
           <div className='search-box hidden'>
@@ -113,12 +119,17 @@ export default function Main() {
             >
               <div
                 className={
-                  searchWord === '' || autoComplete.length===0
+                  searchWord === '' || autoComplete.length === 0 || !focus
                     ? 'search-box-inner'
                     : 'search-box-inner border'
                 }
               >
-                <button className='searchButton' onClick={() => {}}>
+                <button
+                  className='searchButton'
+                  onClick={() => {
+                    window.location.replace(`/search/query=${searchWord}`);
+                  }}
+                >
                   <FontAwesomeIcon icon={faSearch} />
                 </button>
                 <input
@@ -133,13 +144,15 @@ export default function Main() {
                   }}
                   onKeyPress={(e) => {
                     if (e.key === 'Enter') {
+                      window.location.replace(`/search/query=${searchWord}`);
                     }
                   }}
                 ></input>
               </div>
-              {searchWord === '' && autoComplete.length !== 0
+              {searchWord === '' && autoComplete.length === 0
                 ? ''
-                : focus&&autoComplete.map((el, id) => {
+                : focus &&
+                  autoComplete.map((el, id) => {
                     return (
                       <AutoList
                         key={id}
@@ -156,7 +169,7 @@ export default function Main() {
       {loginModal && (
         <Login login={login} siteName={siteName} themeColor={themeColor} />
       )}
-      <Footer/>
+      <Footer />
     </>
   );
 }
@@ -164,14 +177,26 @@ export default function Main() {
 function AutoList({ el, searchWord, themeColor }) {
   return (
     <div className='list-auto'>
-      <button className='searchButton' onClick={() => {}}>
-        <FontAwesomeIcon icon={faSearch} />
+      <button className='searchButton'>
+        <FontAwesomeIcon
+          icon={faSearch}
+          onMouseDown={() => {
+            window.location.replace(`/search/query=${el.word}`);
+          }}
+        />
       </button>
-      <div id='text-auto'>
+      <div
+        id='text-auto'
+        onMouseDown={() => {
+          window.location.replace(`/search/query=${el.word}`);
+        }}
+      >
         <span id='part-search' style={{ color: themeColor, fontWeight: '550' }}>
           {filterAutoComplete(searchWord)}
         </span>
-        <span id='part-auto'>{el.word.slice(filterAutoComplete(searchWord).length, el.word.length)}</span>
+        <span id='part-auto'>
+          {el.word.slice(filterAutoComplete(searchWord).length, el.word.length)}
+        </span>
       </div>
     </div>
   );

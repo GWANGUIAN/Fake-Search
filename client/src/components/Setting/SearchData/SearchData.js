@@ -245,6 +245,7 @@ export default function SearchData({ themeColor }) {
           />
         </div>
         <div className='setting-section'>
+          {!profileView&&!newsView&&!imageView&&!musicView&&selected!==''&&<div className='box-no-data'>설정된 데이터가 없습니다.<br/>섹션을 추가하세요.</div>}
           {!resetDrag && (
             <DragDropContext onDragEnd={handleDropChange}>
               <Droppable droppableId='sections'>
