@@ -77,6 +77,14 @@
   border: 1px solid rgb(219, 219, 219);
   border-radius: 5px;
   margin-right: 25px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  font-size: 0.8em;
+  font-weight: 600;
+  color: rgb(88, 88, 88);
 }
 
 .profile-container .box-detail-profile {
@@ -135,6 +143,14 @@
   border: 1px solid rgb(219, 219, 219);
   border-radius: 5px;
   margin: 0 5px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  font-size: 0.8em;
+  font-weight: 600;
+  color: rgb(88, 88, 88);
 }
 
 .profile-container .title-subinfo-content {
@@ -222,6 +238,14 @@
   object-fit: cover;
   border: 1px solid rgb(219, 219, 219);
   border-radius: 5px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  font-size: 0.8em;
+  font-weight: 600;
+  color: rgb(88, 88, 88);
 }
 
 .news-container .btn-more-news {
@@ -277,6 +301,14 @@
   margin: 0px 2px;
   border: 1px solid rgb(219, 219, 219);
   border-radius: 2px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  font-size: 0.8em;
+  font-weight: 600;
+  color: rgb(88, 88, 88);
 }
 
 .image-container .btn-more-image {
@@ -343,6 +375,14 @@
     margin: 10px auto;
     border: 1px solid rgb(219, 219, 219);
     border-radius: 5px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    font-size: 0.8em;
+    font-weight: 600;
+    color: rgb(88, 88, 88);
 }
 
 .music-container .title-song-info{
@@ -352,11 +392,6 @@
 .music-container .text-song-info{
     color: rgb(65, 65, 65);
     margin-bottom: 30px;
-}
-
-.music-container {
-}
-.music-container {
 }
 
 .music-container .btn-more-music {

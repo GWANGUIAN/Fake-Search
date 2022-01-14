@@ -55,7 +55,7 @@ export default function Search({ match }) {
         res.data.music,
       ]);
     }
-  }, []);
+  }, [setSearchData, word]);
 
   useEffect(() => {
     getSearchData();
@@ -140,7 +140,7 @@ export default function Search({ match }) {
         </div>
         <div className='box-content'>
           <div className='inner-box-content'>
-            {searchData.sort().map((el, id) => {
+            {searchData.sort((a,b)=> a.order-b.order).map((el, id) => {
               if (el.type === 'profile' && el.view) {
                 return <Profile key={id} profileData={el} />;
               } else if (el.type === 'news' && el.view) {
@@ -149,7 +149,7 @@ export default function Search({ match }) {
                 return <Image key={id} imageData={el.content} />;
               } else if (el.type === 'music' && el.view) {
                 return <Music key={id} musicData={el} />;
-              }
+              } else return ''
             })}
             {(searchData.length === 0 ||
               searchData.every((el) => !el.view)) && <NotFound word={word} />}

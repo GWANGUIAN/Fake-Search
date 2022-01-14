@@ -1,10 +1,11 @@
 import React, { useEffect, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserPlus } from '@fortawesome/free-solid-svg-icons';
+import { GoogleLogin } from 'react-google-login';
 import axios from 'axios';
 import './Login.css';
 
-export default function Login({ siteName, themeColor, login }) {
+export default function Login({ login }) {
   const naverRef = useRef();
 
   const initializeNaverLogin = () => {
@@ -23,6 +24,50 @@ export default function Login({ siteName, themeColor, login }) {
       naverLogin.init();
       naverLogin.logout();
     };
+  };
+
+  const kakaoLoginHandler = () => {
+    const { Kakao } = window;
+    Kakao.Auth.login({
+      scope: '',
+      success: () => {
+        Kakao.API.request({
+          url: '/v2/user/me',
+          success: async function (res) {
+            axios
+              .post(
+                `${process.env.REACT_APP_SERVER_API}/users/kakao-login`,
+                {
+                  identification: res.id,
+                },
+                { withCredentials: true }
+              )
+              .then(() => {
+                window.location.replace('/');
+              });
+          },
+        });
+      },
+    });
+  };
+
+  const onSuccess = async (response) => {
+    const { googleId } = response;
+    axios
+      .post(
+        `${process.env.REACT_APP_SERVER_API}/users/google-login`,
+        {
+          identification: googleId,
+        },
+        { withCredentials: true }
+      )
+      .then(() => {
+        window.location.replace('/');
+      });
+  };
+
+  const onFailure = (error) => {
+    console.log(error);
   };
 
   const guestLogin = () => {
@@ -54,23 +99,33 @@ export default function Login({ siteName, themeColor, login }) {
             <div ref={naverRef} id='naverIdLogin' />
           </div>
           <img
-              src='img/btn-login-naver.png'
-              alt='naver-login'
-              onClick={handleClick}
-              className='btn-naver'
-            />
+            src='img/btn-login-naver.png'
+            alt='naver-login'
+            onClick={handleClick}
+            className='btn-naver'
+          />
           <img
             src='img/btn-login-kakao.png'
             alt='naver-kakao'
             className='btn-kakao'
+            onClick={kakaoLoginHandler}
           />
-          <img
-            src='img/btn-login-google.png'
-            alt='naver-google'
-            className='btn-google'
+          <GoogleLogin
+            clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
+            render={(renderProps) => (
+              <img
+                src='img/btn-login-google.png'
+                alt='naver-google'
+                className='btn-google'
+                onClick={renderProps.onClick}
+              />
+            )}
+            responseType={'id_token'}
+            onSuccess={onSuccess}
+            onFailure={onFailure}
           />
           <div className='btn-guest' onClick={guestLogin}>
-            <FontAwesomeIcon icon={faUserPlus} className='icon-user'/>
+            <FontAwesomeIcon icon={faUserPlus} className='icon-user' />
             <span className='text-guest'>게스트 로그인</span>
           </div>
         </div>

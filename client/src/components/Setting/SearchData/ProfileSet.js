@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMinusCircle, faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 import { useSelector, useDispatch } from 'react-redux';
@@ -7,27 +7,7 @@ import ImageUpload from './ImageUpload';
 import axios from 'axios';
 
 export default function ProfileSet({ isOpen, setIsOpen }) {
-  const temp = {
-    job: '웹 개발자',
-    info: [
-      { title: '신체', content: '175cm' },
-      { title: '출생', content: '1996.12.10' },
-      { title: '학력', content: '카이스트' },
-    ],
-    name: '김코딩',
-    type: 'profile',
-    view: 1,
-    order: 1,
-    subinifo: [
-      {
-        title: '방송',
-        content: [
-          { image: '', title: '코딩은 무엇인가' },
-          { image: '', title: '코딩은 무엇이다' },
-        ],
-      },
-    ],
-  };
+
   const dispatch = useDispatch();
   const { job, info, name, subinfo, profileImg } = useSelector(
     (state) => state.profileReducer

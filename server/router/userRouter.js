@@ -14,7 +14,7 @@ const {
 
 router.get("/auth", auth);
 router.post("/naver-login", naver);
-router.post("/kako-login", kakao);
+router.post("/kakao-login", kakao);
 router.post("/google-login", google);
 router.post("/guest-login", guest);
 router.post("/logout", logout);
