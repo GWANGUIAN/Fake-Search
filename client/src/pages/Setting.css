@@ -1,0 +1,124 @@
+.setting-container {
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+@media (min-width: 601px) {
+  .setting-container {
+    height: 100vh;
+  }
+}
+
+@media (min-width: 0px) and (max-width: 600px) {
+  .setting-container {
+    min-height: 100vh;
+  }
+}
+
+.setting-container .box-menu {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  margin: 3% 1% 3% 3%;
+  padding: 35px;
+  background-color: white;
+  border: 1px solid rgb(235, 235, 235);
+  border-radius: 20px;
+  box-shadow: 0px 4px 4px rgb(187, 187, 187);
+}
+
+.setting-container .box-content {
+  display: flex;
+  flex-direction: column;
+  flex: 3.1;
+  margin: 3% 3% 3% 1%;
+  background-color: white;
+  border: 1px solid rgb(235, 235, 235);
+  border-radius: 20px;
+  box-shadow: 0px 3px 3px rgb(187, 187, 187);
+  overflow: hidden;
+}
+
+@media (min-width: 1123px) {
+  .setting-container .box-menu-mobile {
+    display: none;
+  }
+}
+
+@media (min-width: 0px) and (max-width: 1122px) {
+  .setting-container {
+    flex-direction: column;
+  }
+
+  .setting-container .box-menu-mobile {
+    display: flex;
+    align-items: center;
+    flex: 0.03;
+    margin: 2% 2% 1% 2%;
+    padding: 25px;
+    background-color: white;
+    border: 1px solid rgb(235, 235, 235);
+    border-radius: 20px;
+    box-shadow: 0px 4px 4px rgb(187, 187, 187);
+  }
+
+  .setting-container .box-menu {
+    display: none;
+  }
+
+  .setting-container #icon-back{
+    font-size: 1.3em;
+  }
+
+  .setting-container #select-menu{
+    width: 100%;
+  }
+
+  .setting-container .box-content {
+    margin: 1% 2% 2% 2%;
+  }
+}
+
+.setting-container .btn-back {
+  display: flex;
+  align-items: center;
+  color: rgb(124, 124, 124);
+  font-weight: 500;
+  margin-bottom: 10%;
+}
+
+.setting-container #icon-back {
+  margin-right: 15px;
+  cursor: pointer;
+}
+
+.setting-container #text-back {
+  cursor: pointer;
+}
+
+.setting-container .menu {
+  font-size: 1.07em;
+  margin: 5px 0;
+  cursor: pointer;
+}
+
+.setting-container .btn-site {
+}
+
+.setting-container .btn-autocomplete {
+}
+
+.setting-container .btn-searchdata {
+}
+
+.setting-container .btn-withdrawal {
+  margin-top: auto;
+  text-align: right;
+  color: rgb(158, 158, 158);
+  cursor: pointer;
+}
+
+.setting-container .btn-withdrawal:hover {
+  text-decoration: underline;
+}

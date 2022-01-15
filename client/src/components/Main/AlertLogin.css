@@ -1,0 +1,36 @@
+.main-container .off,
+.search-container .off{
+    display: none;
+}
+
+.alertlogin-container {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  border: 1px solid rgb(235, 235, 235);
+  border-radius: 20px;
+  box-shadow: 0px 3px 3px rgb(187, 187, 187);
+  width: 300px;
+  height: 150px;
+  top: 6vh;
+  right: -0.5vw;
+  z-index: 100;
+}
+
+.alertlogin-container .text-noti{
+    color: rgb(44, 44, 44);
+}
+
+.alertlogin-container .btn-guestlogin{
+    cursor: pointer;
+    font-weight: 600;
+    color: rgb(170, 170, 170);
+}
+
+.alertlogin-container .btn-guestlogin:hover{
+    text-decoration: underline;
+}
+

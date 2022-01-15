@@ -1,0 +1,38 @@
+.whole-box-img{
+    width: 100%;
+    height: 100%;
+    border: 1px solid rgb(179, 179, 179);
+    border-radius: 10px;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+.box-img-upload {
+  height: 100%;
+  width: 100%;
+  box-shadow: 0px 2px 2px rgb(187, 187, 187);
+  box-sizing: border-box;
+}
+
+.box-img-upload .fileContainer{
+    border: none;
+    box-shadow: none;
+    height: 100%;
+    width: 100%;
+    margin: 0px;
+    padding: 3px 5px;
+    box-sizing: border-box;
+    text-align: center;
+    background-color: rgb(226, 226, 226);
+}
+
+.box-img-upload .btn-img-upload{
+
+}
+
+.img-uploaded{
+    object-fit: cover;
+    width: 100%;
+    min-width: 110px;
+    height: 100%;
+}

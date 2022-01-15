@@ -1,0 +1,12 @@
+.App {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Apple SD Gothic Neo,arial,sans-serif;
+  overflow-x: hidden;
+  font-size: 100%;
+}
+
+.App-content{
+  min-height:100vh;
+}

@@ -1,0 +1,651 @@
+/*섹션 공통 설정*/
+.searchdata-container .setting-section .box-section-title {
+  display: flex;
+  align-items: center;
+}
+
+.searchdata-container .setting-section .section-title {
+  flex: 1.5;
+  font-size: 1.2em;
+  color: rgb(187, 187, 187);
+  font-weight: 500;
+}
+
+.searchdata-container .setting-section .btn-open {
+  flex: 0.1;
+  min-width: 50px;
+  color: rgb(83, 83, 83);
+  cursor: pointer;
+  margin-left: auto;
+  font-weight: 700;
+}
+
+.searchdata-container .setting-section .btn-delete-section {
+  flex: 0.1;
+  min-width: 50px;
+  color: rgb(46, 46, 46);
+  cursor: pointer;
+  margin-left: auto;
+}
+
+.setting-section input[type='text'] {
+  border: none;
+}
+
+.setting-section input[type='text']:hover {
+  border: 1px solid rgb(165, 165, 165);
+  border-radius: 2px;
+}
+
+.setting-section input[type='text']:focus {
+  outline: inherit;
+  border: 1px solid rgb(165, 165, 165);
+  border-radius: 2px;
+}
+
+.setting-section textarea {
+  resize: none;
+  border: none;
+}
+
+.setting-section textarea:hover {
+  border: 1px solid rgb(165, 165, 165);
+  border-radius: 2px;
+}
+
+.setting-section textarea:focus {
+  outline: inherit;
+  border: 1px solid rgb(165, 165, 165);
+  border-radius: 2px;
+}
+
+/*프로필 설정*/
+
+.profileset-container {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border: 2px solid rgb(212, 212, 212);
+  box-shadow: 0px 2px 5px rgb(187, 187, 187);
+  border-radius: 10px;
+  width: 100%;
+  margin: 5px auto;
+  box-sizing: border-box;
+  padding: 5px 10px;
+  overflow-x: hidden;
+}
+
+.profileset-container .box-maininfo {
+  display: flex;
+  height: 50px;
+  align-items: center;
+  padding-left: 5px;
+}
+
+.profileset-container .box-maininfo input[placeholder='이름'] {
+  font-size: 1.2em;
+  font-weight: 500;
+  width: 100px;
+}
+
+.profileset-container .box-maininfo input[placeholder='직업'] {
+  font-size: 1.1em;
+  font-weight: 500;
+  color: rgb(149, 149, 149);
+  width: 100px;
+}
+
+.profileset-container .box-detail {
+  display: flex;
+  align-items: center;
+}
+
+.profileset-container .img-profile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin: 0px 3px 10px 0;
+  border-radius: 10px;
+  position: relative;
+}
+
+.profileset-container .img-profile-line {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 200px;
+  width: 160px;
+  border-radius: 10px;
+}
+
+.profileset-container .btn-delete-profileImg {
+  color: rgb(78, 78, 78);
+  cursor: pointer;
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  font-size: 1.2em;
+  background-color: white;
+  border-radius: 50%;
+}
+
+.profileset-container .box-detail-text {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  row-gap: 3px;
+  column-gap: 5px;
+  margin-bottom: auto;
+  padding-left: 10px;
+}
+
+.profileset-container .title-detail-text {
+  width: 80px;
+  font-weight: 450;
+  font-size: 1.1em;
+  color: rgb(59, 59, 59);
+}
+
+.profileset-container .content-detail-text {
+  width: 80px;
+  font-weight: 400;
+  color: rgb(63, 63, 63);
+}
+
+.profileset-container .btn-delete-detail {
+  margin: auto 0;
+  cursor: pointer;
+  color: rgb(78, 78, 78);
+}
+
+.profileset-container .unvisible {
+  visibility: hidden;
+}
+
+.profileset-container #btn-add-detail {
+  grid-column: 1 / 4;
+  border: inherit;
+  outline: inherit;
+  cursor: pointer;
+  height: 35px;
+  border-radius: 5px;
+  color: rgb(85, 85, 85);
+  font-size: 1.05em;
+  font-weight: 500;
+  margin: 0 auto;
+  background-color: inherit;
+}
+
+.profileset-container #btn-add-detail:hover {
+  background-color: rgb(245, 245, 245);
+}
+
+.profileset-container .box-subinfo {
+  border-top: 1px solid rgb(212, 212, 212);
+  margin: 5px;
+  padding: 5px 0px;
+}
+
+.profileset-container .box-subinfo-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 7px 10px 0px 10px;
+}
+
+.profileset-container .title-subinfo {
+  font-size: 1.15em;
+  font-weight: 450;
+  color: rgb(63, 63, 63);
+  width: 70px;
+  margin-bottom: 5px;
+}
+
+.profileset-container .box-delete-subinfo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.profileset-container .btn-delete-subinfo {
+  margin: auto 05px auto 0;
+  color: rgb(78, 78, 78);
+}
+
+.profileset-container .box-subinfo-content {
+  display: flex;
+  justify-items: center;
+  margin: 5px 0px;
+}
+
+.profileset-container .el-subinfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.profileset-container .img-subinfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  position: relative;
+}
+
+.profileset-container .img-subinfo-line {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 150px;
+  width: 120px;
+  border-radius: 10px;
+}
+
+@media (min-width: 0px) and (max-width: 753px) {
+  .profileset-container .img-subinfo-line {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 130px;
+    width: 110px;
+    border-radius: 10px;
+  }
+
+  .profileset-container .img-subinfo-line p,
+  .newsset-container .img-news-line p,
+  .musicset-container #img-album-line p,
+  .imageset-container .el-img-line p {
+    display: none;
+  }
+
+  .profileset-container .box-subinfo-content {
+    display: flex;
+    justify-items: center;
+    margin: 5px 0px;
+    overflow-x: auto;
+  }
+
+  /* 스크롤바 설정*/
+  .profileset-container .box-subinfo-content::-webkit-scrollbar {
+    height: 2px;
+  }
+
+  /* 스크롤바 막대 설정*/
+  .profileset-container .box-subinfo-content::-webkit-scrollbar-thumb {
+    height: 17%;
+    background-color: gray;
+    border-radius: 10px;
+  }
+
+  /* 스크롤바 뒷 배경 설정*/
+  .profileset-container .box-subinfo-content::-webkit-scrollbar-track {
+    background-color: rgb(214, 214, 214);
+    border-radius: 10px;
+  }
+}
+
+.profileset-container .btn-delete-subinfo-img {
+  position: absolute;
+  cursor: pointer;
+  color: rgb(78, 78, 78);
+  top: 3px;
+  right: 3px;
+  background-color: white;
+  border-radius: 50%;
+}
+
+.profileset-container .title-subinfo-content {
+  width: 120px;
+  text-align: center;
+  margin-top: 3px;
+  color: rgb(80, 80, 80);
+}
+
+.profileset-container .btn-delete-el-subinfo {
+  margin: 10px 0;
+  cursor: pointer;
+  color: rgb(78, 78, 78);
+}
+
+.profileset-container #btn-add-subinfo-content {
+  border: inherit;
+  outline: inherit;
+  cursor: pointer;
+  height: 35px;
+  width: 80px;
+  min-width: 60px;
+  border-radius: 5px;
+  color: rgb(85, 85, 85);
+  font-size: 1.05em;
+  font-weight: 500;
+  margin: auto 2px;
+  background-color: inherit;
+}
+
+.profileset-container #btn-add-subinfo-content:hover {
+  background-color: rgb(245, 245, 245);
+}
+
+.profileset-container #btn-add-subinfo {
+  border: none;
+  outline: inherit;
+  cursor: pointer;
+  height: 35px;
+  width: 150px;
+  border-radius: 5px;
+  color: rgb(85, 85, 85);
+  font-size: 1.05em;
+  font-weight: 500;
+  margin: 0 auto;
+  background-color: inherit;
+}
+
+.profileset-container #btn-add-subinfo:hover {
+  background-color: rgb(245, 245, 245);
+}
+
+/*뉴스 설정*/
+
+.newsset-container {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border: 2px solid rgb(212, 212, 212);
+  box-shadow: 0px 2px 5px rgb(187, 187, 187);
+  border-radius: 10px;
+  width: 100%;
+  margin: 5px auto;
+  box-sizing: border-box;
+  padding: 5px 10px;
+  margin: 5px 0px;
+  overflow-x: hidden;
+}
+
+.newsset-container .box-news {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-bottom: 1px solid rgb(212, 212, 212);
+  padding: 10px 0px;
+  margin: 10px 0px;
+  overflow-x: auto;
+}
+
+/* 스크롤바 설정*/
+.newsset-container .box-news::-webkit-scrollbar {
+  height: 2px;
+}
+
+/* 스크롤바 막대 설정*/
+.newsset-container .box-news::-webkit-scrollbar-thumb {
+  height: 17%;
+  background-color: gray;
+  border-radius: 10px;
+}
+
+/* 스크롤바 뒷 배경 설정*/
+.newsset-container .box-news::-webkit-scrollbar-track {
+  background-color: rgb(214, 214, 214);
+  border-radius: 10px;
+}
+
+.newsset-container .inline-box-news {
+  display: flex;
+  align-items: center;
+}
+
+.newsset-container .box-news-content {
+  flex: 5;
+  display: flex;
+  flex-direction: column;
+}
+
+.newsset-container .news-line-first {
+  display: flex;
+}
+
+.newsset-container .reporter {
+  width: 100px;
+  font-size: 1.02em;
+}
+
+.newsset-container .news-date {
+  width: 120px;
+  font-size: 1.02em;
+}
+
+.newsset-container .title-news {
+  width: 100%;
+  margin: 7px 0px;
+  font-size: 1.1em;
+  color: rgb(38, 57, 230);
+  font-weight: 500;
+}
+
+.newsset-container .title-news::placeholder {
+  font-size: 1.1em;
+  color: rgb(38, 57, 230);
+}
+
+.newsset-container .content-news {
+  width: 100%;
+  height: 80px;
+}
+
+.newsset-container .img-news {
+  flex: 1.3;
+  margin-left: 10px;
+  text-align: center;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.newsset-container .img-news-line {
+  height: 140px;
+  width: 100%;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.newsset-container .btn-delete-img {
+  color: rgb(78, 78, 78);
+  cursor: pointer;
+  position: absolute;
+  top: 6px;
+  right: 8px;
+  font-size: 1.2em;
+  background-color: white;
+  border-radius: 50%;
+}
+
+.newsset-container .btn-delete-news {
+  cursor: pointer;
+  color: rgb(78, 78, 78);
+  margin: 0 auto;
+}
+
+.newsset-container #btn-add-news {
+  border: none;
+  outline: inherit;
+  cursor: pointer;
+  height: 35px;
+  width: 100px;
+  border-radius: 5px;
+  color: rgb(85, 85, 85);
+  font-size: 1.05em;
+  font-weight: 500;
+  margin: 0 auto;
+  background-color: inherit;
+}
+
+.newsset-container #btn-add-news:hover {
+  background-color: rgb(245, 245, 245);
+}
+
+/*이미지 설정*/
+
+.imageset-container {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border: 2px solid rgb(212, 212, 212);
+  box-shadow: 0px 2px 5px rgb(187, 187, 187);
+  border-radius: 10px;
+  width: 100%;
+  margin: 5px auto;
+  box-sizing: border-box;
+  padding: 5px 10px;
+  overflow-x: hidden;
+}
+
+.imageset-container .box-image {
+  display: flex;
+  align-items: top;
+  margin: 10px 0px;
+  overflow-x: auto;
+}
+
+/* 스크롤바 설정*/
+.imageset-container .box-image::-webkit-scrollbar {
+  height: 2px;
+}
+
+/* 스크롤바 막대 설정*/
+.imageset-container .box-image::-webkit-scrollbar-thumb {
+  height: 17%;
+  background-color: gray;
+  border-radius: 10px;
+}
+
+/* 스크롤바 뒷 배경 설정*/
+.imageset-container .box-image::-webkit-scrollbar-track {
+  background-color: rgb(214, 214, 214);
+  border-radius: 10px;
+}
+
+@media (min-width: 0px) and (max-width: 753px) {
+}
+
+.imageset-container .el-img {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: left;
+  position: relative;
+}
+
+.imageset-container .el-img-line {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: left;
+  margin-bottom: 5px;
+  height: 150px;
+  width: 98%;
+}
+
+.imageset-container .img {
+  height: 150px;
+  width: 98%;
+  margin: 0px 3px 10px 0;
+  text-align: center;
+  line-height: 150px;
+  background-color: rgb(209, 209, 209);
+  color: white;
+  font-weight: 600;
+  border-radius: 10px;
+}
+
+.imageset-container .btn-delete-img {
+  color: rgb(78, 78, 78);
+  background-color: white;
+  border-radius: 50%;
+  cursor: pointer;
+  position: absolute;
+  top: 6px;
+  right: 8px;
+  font-size: 1.2em;
+}
+
+/*음악 설정*/
+
+.musicset-container {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border: 2px solid rgb(212, 212, 212);
+  box-shadow: 0px 2px 5px rgb(187, 187, 187);
+  border-radius: 10px;
+  width: 100%;
+  margin: 5px auto;
+  box-sizing: border-box;
+  padding: 5px 10px;
+  overflow-x: hidden;
+}
+
+.musicset-container #title-music {
+  margin: 10px 0px 5px 0px;
+  font-size: 1.1em;
+  font-weight: 600;
+}
+
+.musicset-container #singer {
+  font-size: 1em;
+  width: 120px;
+}
+
+.musicset-container #date {
+  font-size: 1em;
+  width: 180px;
+}
+
+.musicset-container #img-album {
+  margin: 0px auto;
+  text-align: center;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.musicset-container #img-album-line {
+  height: 150px;
+  width: 150px;
+}
+
+.musicset-container .btn-delete-album {
+  color: rgb(78, 78, 78);
+  cursor: pointer;
+  position: absolute;
+  background-color: white;
+  border-radius: 50%;
+  top: 6px;
+  right: 6px;
+  font-size: 1.2em;
+}
+
+.musicset-container #script-song {
+  height: 100px;
+}
+
+.musicset-container {
+}
