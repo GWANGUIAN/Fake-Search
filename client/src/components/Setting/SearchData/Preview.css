@@ -32,6 +32,19 @@
     height: 64px;
 }
 
+
+@media (min-width: 0px) and (max-width: 680px) {
+    .preview-container .inner-box-input {
+      width: 100vw;
+    }
+  
+    .preview-container .news,
+    .preview-container .map,
+    .preview-container .dictionary {
+      display: none;
+    }
+  }
+
 .preview-container .box-logo{
     flex: 1;
     text-align: center;
