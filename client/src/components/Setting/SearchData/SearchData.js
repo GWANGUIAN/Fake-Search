@@ -201,11 +201,11 @@ export default function SearchData({ themeColor }) {
   return (
     <div className='searchdata-container'>
       <div className='box-control'>
+        <div className='box-subcontrol1'>
         <div id='text-searchWord'>검색어</div>
         <Select
           id='input-seachWord'
           options={searchWordList}
-          placeholder='검색어를 선택하세요.'
           onChange={selectSearchData}
           value={selected}
         />
@@ -219,6 +219,8 @@ export default function SearchData({ themeColor }) {
         >
           저장
         </button>
+        </div>
+        <div className='box-subcontrol2'>
         <div id='btn-preview'>
           <span
             onClick={async () => {
@@ -248,13 +250,16 @@ export default function SearchData({ themeColor }) {
         >
           삭제
         </div>
+        </div>
       </div>
       <div className='box-section'>
         <div id='btn-add-section'>
           <span
             ref={btnSection}
             onClick={() => {
-              setModalSection(!modalSection);
+              if(selected!==""){
+                setModalSection(!modalSection);
+              }
             }}
           >
             + 섹션 추가

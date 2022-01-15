@@ -2,13 +2,13 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useHistory } from 'react-router-dom';
 import AlertLogin from '../components/Main/AlertLogin';
 import Login from './Login';
-import Footer from './Footer';
 import { useSelector } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCog, faSearch } from '@fortawesome/free-solid-svg-icons';
 import filterAutoComplete from '../utils/filterAutoComplete';
 import axios from 'axios';
 import './Main.css';
+import './Main_mobile.css'
 
 export default function Main() {
   const notification = useRef();
@@ -169,7 +169,6 @@ export default function Main() {
       {loginModal && (
         <Login login={login} siteName={siteName} themeColor={themeColor} />
       )}
-      <Footer />
     </>
   );
 }
