@@ -6,6 +6,13 @@
   box-sizing: border-box;
 }
 
+@media (min-width: 0px) and (max-width: 680px) {
+  .autocomplete-container {
+    padding: 10px 30px;
+  }
+}
+
+
 .autocomplete-container .box-auto-input {
   flex: 1;
   display: flex;
@@ -21,6 +28,12 @@
   flex-direction: column;
   overflow-x: hidden;
   overflow-y: auto;
+}
+
+@media (min-width: 0px) and (max-width: 680px) {
+  .autocomplete-container .box-auto-list {
+    max-height: 66vh;
+  }
 }
 
 /* 스크롤바 설정*/

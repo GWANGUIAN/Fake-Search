@@ -1,8 +1,19 @@
 .setting-container {
   display: flex;
-  height: 100vh;
   justify-content: center;
   margin: 0 auto;
+}
+
+@media (min-width: 601px) {
+  .setting-container {
+    height: 100vh;
+  }
+}
+
+@media (min-width: 0px) and (max-width: 600px) {
+  .setting-container {
+    min-height: 100vh;
+  }
 }
 
 .setting-container .box-menu {

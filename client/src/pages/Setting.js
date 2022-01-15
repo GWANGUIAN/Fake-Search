@@ -13,7 +13,7 @@ import Select from 'react-select';
 export default function Setting() {
   const history = useHistory();
   const { themeColor, oauth } = useSelector((state) => state.loginReducer);
-  const [tabMenu, setTabMenu] = useState(2);
+  const [tabMenu, setTabMenu] = useState(0);
   const [confirmWithdrawal, setConfirmWithdrawal] = useState(false);
   const [selected, setSelected] = useState({ value: 0, label: '사이트 이름 및 테마 색상 설정' });
 
