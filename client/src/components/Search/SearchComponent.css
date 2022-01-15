@@ -7,6 +7,12 @@
   border: 2px solid rgb(235, 235, 235);
 }
 
+@media (min-width: 0px) and (max-width: 730px) {
+  .notfound-container {
+    padding: 50px 20px;
+  }
+}
+
 .notfound-container .text-title {
   margin-left: 30px;
   margin-bottom: 40px;
@@ -25,6 +31,25 @@
 }
 .notfound-container li {
   margin-bottom: 5px;
+}
+
+@media (min-width: 0px) and (max-width: 730px) {
+
+  .notfound-container .text-title {
+    margin-left: 15px;
+    margin-bottom: 20px;
+    font-size: 1.1em;
+    font-weight: 500;
+  }
+
+  .notfound-container ul {
+    margin-left: 5px;
+    font-size: 0.8em;
+    color: rgb(104, 104, 104);
+  }
+  .notfound-container li {
+    margin-bottom: 5px;
+  }
 }
 
 /*프로필*/
