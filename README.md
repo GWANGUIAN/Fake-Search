@@ -23,3 +23,6 @@
 ## 사용스택
 
 ![](https://images.velog.io/images/bbaa3218/post/89018642-f36a-4de6-9042-fbed00b6a83b/Fake%20Search.png)
+
+## 배포링크
+[FakeSearch](https://fakesearch.link)(https://fakesearch.link)
