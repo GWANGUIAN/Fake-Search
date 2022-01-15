@@ -8,7 +8,6 @@
 .search-container .box-menu{
   display: flex;
   flex-direction: column;
-
 }
 
 .search-container .box-input{
@@ -159,12 +158,4 @@
     max-width: 1180px;
     width: 100%;
     margin: 0 auto;
-}
-
-.search-container {
-    
-}
-
-.search-container {
-    
 }

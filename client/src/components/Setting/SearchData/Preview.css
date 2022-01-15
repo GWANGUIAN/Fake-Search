@@ -97,6 +97,15 @@
 .preview-container .box-category{
     box-shadow: 0px 2px 3px rgb(209, 209, 209);
     z-index: 10;
+    overflow-x: auto;
+}
+
+.preview-container .box-category {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+}
+.preview-container .box-category::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera*/
 }
 
 .preview-container .inner-box-category{
@@ -113,6 +122,24 @@
     font-weight: 450;
     margin: 0 10px;
     cursor: pointer;
+}
+
+.preview-container .all,
+.preview-container .shopping,
+.preview-container .news,
+.preview-container .map{
+    min-width: 40px;
+}
+
+.preview-container .image,
+.preview-container .video,
+.preview-container .view,
+.preview-container .more{
+    min-width: 45px;
+}
+
+.preview-container .dictionary{
+    min-width: 60px;
 }
 
 .preview-container .more{
