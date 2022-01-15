@@ -40,7 +40,8 @@
   
     .preview-container .news,
     .preview-container .map,
-    .preview-container .dictionary {
+    .preview-container .dictionary,
+    .search-container .shopping {
       display: none;
     }
   }
@@ -73,7 +74,7 @@
     font-size: 1.3em;
     font-weight: 600;
     vertical-align: middle;
-    min-width: none;
+    min-width: 50px;
 }
 
 .preview-container .input-search:focus{
@@ -99,6 +100,7 @@
 
 .preview-container .on{
     background-color: rgb(226, 226, 226) ;
+    min-width: 30px;
 }
 
 .preview-container .icon-setting{
