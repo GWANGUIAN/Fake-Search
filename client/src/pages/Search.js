@@ -14,6 +14,7 @@ import Image from '../components/Search/Image';
 import axios from 'axios';
 import './Search.css';
 import '../components/Search/SearchComponent.css';
+import '../components/Search/SearchComponent_mobile.css';
 
 export default function Search({ match }) {
   const { word } = match.params;

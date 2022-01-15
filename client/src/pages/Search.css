@@ -28,16 +28,16 @@
   margin: 0 auto;
   width: 100%;
   height: 64px;
+  padding-right: 20px;
 }
 
 @media (min-width: 0px) and (max-width: 680px) {
-  .search-container .inner-box-input {
-    width: 100vw;
-  }
 
   .search-container .news,
   .search-container .map,
-  .search-container .dictionary {
+  .search-container .dictionary,
+  .search-container .shopping
+   {
     display: none;
   }
 }
@@ -70,7 +70,7 @@
   font-size: 1.3em;
   font-weight: 600;
   vertical-align: middle;
-  min-width: none;
+  min-width: 50px;
 }
 
 .search-container .input-search:focus {
@@ -96,6 +96,7 @@
 
 .search-container .on {
   background-color: rgb(226, 226, 226);
+  min-width: 30px;
 }
 
 .search-container .icon-setting {

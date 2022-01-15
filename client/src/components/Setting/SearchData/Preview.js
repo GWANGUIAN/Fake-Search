@@ -12,6 +12,7 @@ import NotFound from '../../Search/NotFound';
 import changeDomain from '../../../utils/changeDomain'
 import './Preview.css';
 import '../../Search/SearchComponent.css'
+import '../../Search/SearchComponent_mobile.css'
 
 export default function Preview({ word }) {
 
