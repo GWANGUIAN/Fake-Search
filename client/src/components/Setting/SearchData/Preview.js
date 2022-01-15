@@ -82,7 +82,7 @@ export default function Preview({ word }) {
                 return <Music key={id} musicData={el} />;
               } else return ''
             })}
-            {[profileData, newsData, imageData, musicData].every((el) => !el.view) && <NotFound word={word} />}
+            {[profileData, newsData, imageData, musicData].every((el) => !el.view) && <NotFound word={word.value} />}
           </div>
         </div>
         <Footer/>

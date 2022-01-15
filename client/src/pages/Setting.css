@@ -29,6 +29,46 @@
   overflow: hidden;
 }
 
+@media (min-width: 1123px) {
+  .setting-container .box-menu-mobile {
+    display: none;
+  }
+}
+
+@media (min-width: 0px) and (max-width: 1122px) {
+  .setting-container {
+    flex-direction: column;
+  }
+
+  .setting-container .box-menu-mobile {
+    display: flex;
+    align-items: center;
+    flex: 0.03;
+    margin: 2% 2% 1% 2%;
+    padding: 25px;
+    background-color: white;
+    border: 1px solid rgb(235, 235, 235);
+    border-radius: 20px;
+    box-shadow: 0px 4px 4px rgb(187, 187, 187);
+  }
+
+  .setting-container .box-menu {
+    display: none;
+  }
+
+  .setting-container #icon-back{
+    font-size: 1.3em;
+  }
+
+  .setting-container #select-menu{
+    width: 100%;
+  }
+
+  .setting-container .box-content {
+    margin: 1% 2% 2% 2%;
+  }
+}
+
 .setting-container .btn-back {
   display: flex;
   align-items: center;

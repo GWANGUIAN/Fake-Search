@@ -38,6 +38,12 @@
   border: 2px solid rgb(233, 233, 233);
 }
 
+@media (min-width: 0px) and (max-width: 550px) {
+  .profile-container {
+    padding: 10px 10px 5px 10px;
+  }
+}
+
 .profile-container .box-maininfo {
   display: flex;
   align-items: center;
@@ -48,6 +54,12 @@
   font-size: 1.35em;
   font-weight: 700;
   margin-right: 15px;
+}
+
+@media (min-width: 0px) and (max-width: 550px) {
+  .profile-container .box-maininfo {
+    padding: 0px 5px;
+  }
 }
 
 .profile-container .text-job {
@@ -62,6 +74,12 @@
   border-radius: 20px;
   padding: 20px 30px 20px 30px;
   border: 2px solid rgb(233, 233, 233);
+}
+
+@media (min-width: 0px) and (max-width: 550px) {
+  .profile-container .box-detail {
+    padding: 10px 20px 10px 20px;
+  }
 }
 
 .profile-container .section-title {
@@ -85,6 +103,13 @@
   font-size: 0.8em;
   font-weight: 600;
   color: rgb(88, 88, 88);
+}
+
+@media (min-width: 0px) and (max-width: 550px) {
+  .profile-container .img-profile {
+    width: 130px;
+    height: 180px;
+  }
 }
 
 .profile-container .box-detail-profile {
@@ -119,6 +144,12 @@
   border: 2px solid rgb(233, 233, 233);
 }
 
+@media (min-width: 0px) and (max-width: 550px) {
+  .profile-container .box-subinfo {
+    padding: 10px 20px 10px 20px;
+  }
+}
+
 .profile-container .title-subinfo {
   font-size: 1.25em;
   font-weight: 700;
@@ -127,7 +158,15 @@
 
 .profile-container .box-subinfo-content {
   display: flex;
-  align-items: center;
+  overflow-x: auto;
+}
+
+.profile-container .box-subinfo-content {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+.profile-container .box-subinfo-content::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera*/
 }
 
 .profile-container .el-subinfo {
@@ -153,6 +192,13 @@
   color: rgb(88, 88, 88);
 }
 
+@media (min-width: 0px) and (max-width: 550px) {
+  .profile-container .img-subinfo {
+    width: 100px;
+    height: 140px;
+  }
+}
+
 .profile-container .title-subinfo-content {
   margin-top: 3px;
   font-size: 0.95em;
@@ -168,6 +214,12 @@
   border: 2px solid rgb(235, 235, 235);
   display: flex;
   flex-direction: column;
+}
+
+@media (min-width: 0px) and (max-width: 550px) {
+  .news-container {
+    padding: 10px 20px;
+  }
 }
 
 .news-container .section-title {
@@ -248,6 +300,18 @@
   color: rgb(88, 88, 88);
 }
 
+@media (min-width: 680px) and (max-width: 900px) {
+  .news-container .img-news {
+    flex:1.7
+  }
+}
+
+@media (min-width: 0px) and (max-width: 680px) {
+  .news-container .img-news {
+    flex:2.2
+  }
+}
+
 .news-container .btn-more-news {
   margin: 0px -42px -22px -42px;
   height: 70px;
@@ -268,6 +332,13 @@
   text-decoration: underline;
 }
 
+@media (min-width: 0px) and (max-width: 550px) {
+  .news-container .btn-more-news {
+    margin: 0px -22px -22px -22px;
+    height: 50px;
+  }
+}
+
 /*이미지*/
 .image-container {
   margin: 15px 10px;
@@ -277,6 +348,12 @@
   border: 2px solid rgb(235, 235, 235);
   display: flex;
   flex-direction: column;
+}
+
+@media (min-width: 0px) and (max-width: 550px) {
+  .image-container {
+    padding: 10px 20px;
+  }
 }
 
 .image-container .section-title {
@@ -311,6 +388,25 @@
   color: rgb(88, 88, 88);
 }
 
+@media (min-width: 0px) and (max-width: 800px) {
+  .image-container .images {
+    object-fit: cover;
+    width: 180px;
+    height: 130px;
+    margin: 0px 2px;
+    border: 1px solid rgb(219, 219, 219);
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    font-size: 0.8em;
+    font-weight: 600;
+    color: rgb(88, 88, 88);
+  }
+}
+
 .image-container .btn-more-image {
   margin: 0px -42px -22px -42px;
   height: 70px;
@@ -331,6 +427,13 @@
   text-decoration: underline;
 }
 
+@media (min-width: 0px) and (max-width: 550px) {
+  .image-container .btn-more-image {
+    margin: 0px -22px -22px -22px;
+    height: 50px;
+  }
+}
+
 /*음악*/
 .music-container {
   margin: 15px 10px;
@@ -340,6 +443,12 @@
   border: 2px solid rgb(235, 235, 235);
   display: flex;
   flex-direction: column;
+}
+
+@media (min-width: 0px) and (max-width: 550px) {
+  .music-container {
+    padding: 10px 20px;
+  }
 }
 
 .music-container .section-title {
@@ -412,4 +521,11 @@
 
 .music-container .btn-more-music:hover {
   text-decoration: underline;
+}
+
+@media (min-width: 0px) and (max-width: 550px) {
+  .music-container .btn-more-music {
+    margin: 0px -22px -22px -22px;
+    height: 50px;
+  }
 }
