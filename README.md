@@ -4,6 +4,7 @@
 ### LOGO
 <img src="https://images.velog.io/images/bbaa3218/post/6b58fba4-e5b9-4288-8088-011c3b52af61/favicon.svg" width="200" height="200">
 
+<br/>
 ## About
 영화, 드라마 등에서 웹사이트에서 검색하는 장면이 필요하신가요?
 <br/><br/>
@@ -20,9 +21,73 @@
  - 레이아웃에 맞추어 검색 데이터를 수정하고 이미지를 삽입할 수 있습니다.
  - 검색 데이터 순서를 변경할 수 있습니다.
 
+<br/>
+
+## 구현 영상
+<details>
+<summary>매뉴얼 팝업</summary>
+<div markdown="1">
+ 
+ ![매뉴얼](https://user-images.githubusercontent.com/85675881/149657886-8fa3d0e0-a6bc-4179-8caa-008fb87fe942.gif)
+ 
+</div>
+</details>
+
+
+<details>
+<summary>로그인</summary>
+<div markdown="1">
+ 
+![로그인](https://user-images.githubusercontent.com/85675881/149657980-393e63d0-4394-4055-a484-ed4c1c008357.gif)
+ 
+</div>
+</details>
+
+
+<details>
+<summary>사이트 이름 및 테마 색상 설정</summary>
+<div markdown="1">   
+
+![사이트 이름 및 테마 색상 설정](https://user-images.githubusercontent.com/85675881/149657982-f354f179-53a0-47a3-9970-5f9d278ecb04.gif)
+ 
+</div>
+</details>
+
+
+<details>
+<summary>검색 페이지 설정</summary>
+<div markdown="1">       
+
+![검색어 추가, 설정, 삭제](https://user-images.githubusercontent.com/85675881/149658279-ae679333-6e06-40e2-a3af-06e5ab93f27f.gif)
+ 
+</div>
+</details>
+
+<details>
+<summary>검색 페이지</summary>
+<div markdown="1">       
+
+![검색 페이지](https://user-images.githubusercontent.com/85675881/149657986-fca66ca8-78e5-4f2d-ac5e-1526fa480d33.gif)
+ 
+</div>
+</details>
+
+<details>
+<summary>모바일</summary>
+<div markdown="1">       
+
+![모바일](https://user-images.githubusercontent.com/85675881/149657981-bff3fd87-eb05-4367-83a5-3e863a2afc2d.gif)
+ 
+</div>
+</details>
+
+<br/>
+
 ## 사용스택
 
 ![](https://images.velog.io/images/bbaa3218/post/89018642-f36a-4de6-9042-fbed00b6a83b/Fake%20Search.png)
+
+<br/>
 
 ## 배포링크
 [FakeSearch](https://fakesearch.link)(https://fakesearch.link)
