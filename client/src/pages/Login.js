@@ -5,7 +5,7 @@ import { GoogleLogin } from 'react-google-login';
 import axios from 'axios';
 import './Login.css';
 
-export default function Login({ login }) {
+export default function Login({ login, loginModal }) {
   const naverRef = useRef();
 
   const initializeNaverLogin = () => {
@@ -92,7 +92,7 @@ export default function Login({ login }) {
   };
 
   return (
-    <div className='login-container'>
+    <div className={loginModal ? 'login-container' : 'hidden'}>
       <div className='box-login' ref={login}>
         <div className='box-login-btn'>
           <div className='btn-naver'>

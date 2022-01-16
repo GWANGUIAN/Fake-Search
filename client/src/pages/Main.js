@@ -169,9 +169,7 @@ export default function Main() {
           </div>
         </div>
       </div>
-      {loginModal && (
-        <Login login={login} siteName={siteName} themeColor={themeColor} />
-      )}
+        <Login login={login} siteName={siteName} themeColor={themeColor} loginModal={loginModal}/>
       <BrowserView>{isPopUpOpen && <Manual setDate={setDate} />}</BrowserView>
     </>
   );
