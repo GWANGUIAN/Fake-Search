@@ -1,0 +1,288 @@
+.manual-container{
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    position: absolute;
+    display: block;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+    text-align: center;
+    overflow: hidden;
+}
+
+.manual-container .box-manual{
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgb(255, 255, 255);
+    max-width: 900px;
+    max-height: 600px;
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+    border: 1px solid rgb(235, 235, 235);
+    box-shadow: 0px 4px 4px rgb(187, 187, 187);
+    padding: 40px;
+    box-sizing: border-box;
+    z-index: 10;
+}
+
+.manual-container .btn-close{
+    position: absolute;
+    right:30px;
+    bottom: 30px;
+    font-weight: 500;
+    color: rgb(105, 105, 105);
+    cursor: pointer;
+}
+
+.manual-container .btn-close:hover{
+    text-decoration: underline;
+}
+
+.manual-container .box-manual .slick-prev:before {
+    color: rgb(158, 158, 158);
+    content: '<';
+    font-size: 30px;
+    font-family: 'Fredoka One', cursive;
+  }
+  
+.manual-container .box-manual .slick-next:before {
+    color: rgb(158, 158, 158);
+    font-size: 30px;
+    content: '>';
+    font-family: 'Fredoka One', cursive;
+  }
+
+  .manual-container .box-manual .slick-prev.slick-disabled:before, 
+  .manual-container .box-manual .slick-next.slick-disabled:before {
+    opacity: 0;
+}
+
+  .manual-container .box-manual .slick-slider{
+    position: absolute;
+    display: flex;
+    align-items: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgb(255, 255, 255);
+    max-width: 800px;
+    max-height: 600px;
+    width: 80%;
+    height: 80%;
+    
+}
+
+.manual-container .box-manual .slick-slider .slick-track{
+    display: flex;
+    align-items: center;
+}
+
+.manual-container .slide-manual-first{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.manual-container .text-thank{
+    font-size: 1.5em;
+    font-weight: 600;
+    margin-bottom: 5%;
+}
+
+.manual-container .text-thank span{
+    color: #2260FF;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+.manual-container .text-script{
+    margin-bottom: 2%;
+    font-weight: 500;
+}
+
+.manual-container .text-next{
+    color: rgb(126, 126, 126);
+    font-weight: 500;
+}
+
+.manual-container .slide-manual-second{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.manual-container .img-login{
+    width: 300px;
+    height: 300px;
+    border-radius: 10px;
+    object-fit:cover;
+    margin-right: 20px;
+}
+
+.manual-container .box-login-script{
+    margin-left: 20px;
+    text-align: left;
+}
+
+.manual-container .text-login-guide1{
+    margin-bottom: 10px;
+}
+
+.manual-container .text-login-guide2{
+    color:rgb(116, 116, 116);
+}
+
+.manual-container .slide-manual-third{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.manual-container .box-site-img{
+    display: flex;
+    align-items: center;
+}
+
+.manual-container .box-site-img .setting{
+    width: 200px;
+    height: 300px;
+    border-radius: 10px;
+    object-fit:cover;
+    border: 1px solid rgb(209, 209, 209);
+}
+
+.manual-container .box-site-img .complete{
+    width: 300px;
+    height: 200px;
+    border-radius: 10px;
+    object-fit:cover;
+    border: 1px solid rgb(209, 209, 209);
+}
+
+.manual-container .icon-next{
+    color: rgb(139, 139, 139);
+    font-size: 1.2em;
+    margin: 0 10px;
+}
+
+.manual-container .text-sitename-guide{
+    margin-top: 50px;
+}
+
+.manual-container .text-sitename-guide span{
+    color: rgb(75, 75, 75);
+    font-weight: 600;
+}
+
+
+.manual-container .slide-manual-fourth{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.manual-container .box-auto-img{
+    display: flex;
+    align-items: center;
+}
+
+.manual-container .box-auto-img .setting{
+    width: 300px;
+    height: 200px;
+    border-radius: 10px;
+    object-fit:cover;
+    border: 1px solid rgb(209, 209, 209);
+}
+
+.manual-container .box-auto-img .complete{
+    width: 300px;
+    height: 200px;
+    border-radius: 10px;
+    object-fit:cover;
+    border: 1px solid rgb(209, 209, 209);
+}
+
+.manual-container .text-auto-guide{
+    margin-top: 50px;
+}
+
+.manual-container .text-auto-guide span{
+    color: rgb(75, 75, 75);
+    font-weight: 600;
+}
+
+
+.manual-container .slide-manual-fifth{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.manual-container .box-search-img{
+    display: flex;
+    align-items: center;
+}
+
+.manual-container .box-search-img .setting1{
+    width: 170px;
+    height: 135px;
+    border-radius: 10px;
+    object-fit:cover;
+    border: 1px solid rgb(209, 209, 209);
+    margin-right: 10px;
+}
+
+.manual-container .box-search-img .setting2{
+    width: 240px;
+    height: 170px;
+    border-radius: 10px;
+    object-fit:cover;
+    border: 1px solid rgb(209, 209, 209);
+}
+
+.manual-container .box-search-img .complete{
+    width: 240px;
+    height: 170px;
+    border-radius: 10px;
+    object-fit:cover;
+    border: 1px solid rgb(209, 209, 209);
+}
+
+.manual-container .text-search-guide{
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+
+.manual-container .text-search-guide span{
+    color: rgb(75, 75, 75);
+    font-weight: 600;
+}
+
+.manual-container .box-drag{
+    display: flex;
+    align-items: center;
+}
+
+.manual-container .box-drag .drag{
+    width: 140px;
+    height: 170px;
+    border-radius: 10px;
+    object-fit:cover;
+    border: 1px solid rgb(209, 209, 209);
+    margin-right: 30px;
+}
+
+.manual-container .text-drag-guide{
+    text-align: left;
+}
+
+.manual-container .text-drag-guide span{
+    color: rgb(75, 75, 75);
+    font-weight: 600;
+}
