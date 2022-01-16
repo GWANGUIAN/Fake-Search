@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useHistory } from 'react-router-dom';
 import Site from '../components/Setting/Site/Site';
 import AutoComplete from '../components/Setting/AutoComplete/AutoComplete';
@@ -9,12 +9,14 @@ import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import './Setting.css';
 import Withdrawal from '../components/Setting/Withdrawal/Withdrawal';
 import Select from 'react-select';
+import axios from 'axios';
 
 export default function Setting() {
   const history = useHistory();
   const { themeColor, oauth } = useSelector((state) => state.loginReducer);
   const [tabMenu, setTabMenu] = useState(0);
   const [confirmWithdrawal, setConfirmWithdrawal] = useState(false);
+  const [isLoading, setIsLoading] = useState(true)
   const [selected, setSelected] = useState({ value: 0, label: '사이트 이름 및 테마 색상 설정' });
 
   const menuList = [
@@ -28,8 +30,32 @@ export default function Setting() {
     setTabMenu(e.value)
   }
 
+  const isAuthenticated = useCallback(async () => {
+    await axios
+      .get(`${process.env.REACT_APP_SERVER_API}/users/auth`, {
+        withCredentials: true,
+      })
+      .then((res) => {
+        if (!res.data) {
+          window.location.replace('/')
+        } else {
+          setIsLoading(false)
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        window.location.replace('/')
+      });
+  }, []);
+
+  useEffect(() => {
+    isAuthenticated();
+  }, [isAuthenticated]);
+
   return (
-    <div
+    <>
+    {!isLoading&&(
+      <div
       className='setting-container'
       style={{ backgroundColor: `${themeColor}35` }}
     >
@@ -131,5 +157,7 @@ export default function Setting() {
         <Withdrawal setConfirmWithdrawal={setConfirmWithdrawal} />
       )}
     </div>
+    )}
+    </>
   );
 }

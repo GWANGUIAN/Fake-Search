@@ -2,15 +2,18 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useHistory } from 'react-router-dom';
 import AlertLogin from '../components/Main/AlertLogin';
 import Login from './Login';
+import Manual from '../components/Manual/Manual';
 import { useSelector } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCog, faSearch } from '@fortawesome/free-solid-svg-icons';
+import { BrowserView } from 'react-device-detect';
 import filterAutoComplete from '../utils/filterAutoComplete';
+import useManual from '../hooks/useManual';
 import axios from 'axios';
 import './Main.css';
-import './Main_mobile.css'
 
 export default function Main() {
+  const [isPopUpOpen, setDate] = useManual();
   const notification = useRef();
   const login = useRef();
   const btnSetting = useRef();
@@ -61,7 +64,7 @@ export default function Main() {
       const word = filterAutoComplete(e.target.value);
       const res = await axios.get(
         `${process.env.REACT_APP_SERVER_API}/auto/filtered`,
-        { params: { word, userId:id }, withCredentials: true }
+        { params: { word, userId: id }, withCredentials: true }
       );
       setAutoComplete(res.data);
     }
@@ -169,6 +172,7 @@ export default function Main() {
       {loginModal && (
         <Login login={login} siteName={siteName} themeColor={themeColor} />
       )}
+      <BrowserView>{isPopUpOpen && <Manual setDate={setDate} />}</BrowserView>
     </>
   );
 }

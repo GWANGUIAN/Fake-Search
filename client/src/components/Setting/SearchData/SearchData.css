@@ -121,6 +121,12 @@
   font-weight: 500;
 }
 
+.searchdata-container  #btn-preview span:hover,
+.searchdata-container  #btn-add-word:hover,
+.searchdata-container  #btn-delete-word:hover {
+  font-weight: 1000;
+}
+
 .searchdata-container .box-section {
   flex: 6;
   display: flex;

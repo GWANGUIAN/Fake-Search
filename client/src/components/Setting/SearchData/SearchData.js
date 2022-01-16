@@ -271,6 +271,11 @@ export default function SearchData({ themeColor }) {
           />
         </div>
         <div className='setting-section'>
+        {selected === '' && (
+              <div className='box-no-data'>
+                검색어를 선택하세요.
+              </div>
+            )}
           {!profileView &&
             !newsView &&
             !imageView &&
