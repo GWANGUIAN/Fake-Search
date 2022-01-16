@@ -169,6 +169,10 @@ export default function SearchData({ themeColor }) {
         withCredentials: true,
       })
       .then(() => {
+        dispatch(resetProfile());
+        dispatch(resetNews());
+        dispatch(resetImage());
+        dispatch(resetMusic());
         setConfirmDelete(false);
         setSelected('');
         getSeachDataList();
