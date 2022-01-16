@@ -26,7 +26,7 @@
 
 ## 구현 영상
 <details>
-<summary>매뉴얼 팝업</summary>
+<summary><b>매뉴얼 팝업</b></summary>
 <div markdown="1">
  
  ![매뉴얼](https://user-images.githubusercontent.com/85675881/149657886-8fa3d0e0-a6bc-4179-8caa-008fb87fe942.gif)
@@ -36,7 +36,7 @@
 
 
 <details>
-<summary>로그인</summary>
+<summary><b>로그인</b></summary>
 <div markdown="1">
  
 ![로그인](https://user-images.githubusercontent.com/85675881/149657980-393e63d0-4394-4055-a484-ed4c1c008357.gif)
@@ -46,7 +46,7 @@
 
 
 <details>
-<summary>사이트 이름 및 테마 색상 설정</summary>
+<summary><b>사이트 이름 및 테마 색상 설정</b></summary>
 <div markdown="1">   
 
 ![사이트 이름 및 테마 색상 설정](https://user-images.githubusercontent.com/85675881/149657982-f354f179-53a0-47a3-9970-5f9d278ecb04.gif)
@@ -56,7 +56,7 @@
 
 
 <details>
-<summary>검색 페이지 설정</summary>
+<summary><b>검색 페이지 설정</b></summary>
 <div markdown="1">       
 
 ![검색어 추가, 설정, 삭제](https://user-images.githubusercontent.com/85675881/149658279-ae679333-6e06-40e2-a3af-06e5ab93f27f.gif)
@@ -65,7 +65,7 @@
 </details>
 
 <details>
-<summary>검색 페이지</summary>
+<summary><b>검색 페이지</b></summary>
 <div markdown="1">       
 
 ![검색 페이지](https://user-images.githubusercontent.com/85675881/149657986-fca66ca8-78e5-4f2d-ac5e-1526fa480d33.gif)
@@ -74,7 +74,7 @@
 </details>
 
 <details>
-<summary>모바일</summary>
+<summary><b>모바일</b></summary>
 <div markdown="1">       
 
 ![모바일](https://user-images.githubusercontent.com/85675881/149657981-bff3fd87-eb05-4367-83a5-3e863a2afc2d.gif)
