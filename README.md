@@ -54,6 +54,15 @@
 </div>
 </details>
 
+<details>
+<summary><b>자동 완성 검색어 설정</b></summary>
+<div markdown="1">   
+
+![자동 완성 검색어 설정](https://user-images.githubusercontent.com/85675881/149660460-c7c47c47-2601-4f19-b69d-7a6ef4ce74e4.gif)
+ 
+</div>
+</details>
+
 
 <details>
 <summary><b>검색 페이지 설정</b></summary>
