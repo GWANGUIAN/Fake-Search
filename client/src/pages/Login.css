@@ -10,6 +10,10 @@
     text-align: center;
 }
 
+.hidden{
+    display: none;
+}
+
 .login-container .box-login{
     position: absolute;
     top: 50%;

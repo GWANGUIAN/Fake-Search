@@ -2,7 +2,6 @@
   display: flex;
   flex-direction: column;
   height: 100%;
-  position: relative;
   box-sizing: border-box;
 }
 
@@ -20,12 +19,12 @@
     flex-direction: column;
     padding: 5px 10px;
   }
-  .searchdata-container .box-subcontrol1{
+  .searchdata-container .box-subcontrol1 {
     width: 100%;
     margin: 15px 0;
   }
-  
-  .searchdata-container .box-subcontrol2{
+
+  .searchdata-container .box-subcontrol2 {
     flex: 1;
     display: flex;
     align-items: center;
@@ -33,13 +32,13 @@
   }
 }
 
-.searchdata-container .box-subcontrol1{
+.searchdata-container .box-subcontrol1 {
   flex: 1;
   display: flex;
   align-items: center;
 }
 
-.searchdata-container .box-subcontrol2{
+.searchdata-container .box-subcontrol2 {
   flex: 1;
   display: flex;
   align-items: center;
@@ -62,7 +61,7 @@
   flex: 4;
 }
 
-.searchdata-container #input-seachWord::placeholder{
+.searchdata-container #input-seachWord::placeholder {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -121,9 +120,9 @@
   font-weight: 500;
 }
 
-.searchdata-container  #btn-preview span:hover,
-.searchdata-container  #btn-add-word:hover,
-.searchdata-container  #btn-delete-word:hover {
+.searchdata-container #btn-preview span:hover,
+.searchdata-container #btn-add-word:hover,
+.searchdata-container #btn-delete-word:hover {
   font-weight: 1000;
 }
 
@@ -132,11 +131,10 @@
   display: flex;
   flex-direction: column;
   padding: 10px 20px;
-  position: relative;
+  /* position: relative; */
   overflow-x: hidden;
   overflow-y: hidden;
 }
-
 
 .searchdata-container #btn-add-section {
   text-align: right;
@@ -174,7 +172,7 @@
   border-radius: 10px;
 }
 
-.searchdata-container .box-no-data{
+.searchdata-container .box-no-data {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -184,16 +182,25 @@
   color: rgb(180, 180, 180);
 }
 
-.searchdata-container .box-drag{
+@media (min-width: 0px) and (max-width: 600px) {
+  .searchdata-container .box-no-data {
+    position: absolute;
+    top: 52%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+.searchdata-container .box-drag {
   display: flex;
   align-items: center;
 }
 
-.searchdata-container .btn-drag{
+.searchdata-container .btn-drag {
   font-size: 1.1em;
   margin-right: 10px;
   color: rgb(105, 105, 105);
-} 
+}
 
 /*섹션 추가 모달*/
 
@@ -255,40 +262,40 @@
   box-sizing: border-box;
 }
 
-.searchdata-container .bg-modal{
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    position: absolute;
-    display: block;
-    background: rgba(0, 0, 0, 0.5);
-    z-index: 9999;
-    text-align: center;
+.searchdata-container .bg-modal {
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  position: absolute;
+  display: block;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 9999;
+  text-align: center;
 }
 
-.searchdata-container .add-container .btn-close{
-    flex: 1;
-    align-items: center;
-    text-align: right;
-    font-size: 1.3em;
-    color:rgb(134, 134, 134)
+.searchdata-container .add-container .btn-close {
+  flex: 1;
+  align-items: center;
+  text-align: right;
+  font-size: 1.3em;
+  color: rgb(134, 134, 134);
 }
 
-.searchdata-container .add-container .btn-close *{
-    cursor: pointer;
+.searchdata-container .add-container .btn-close * {
+  cursor: pointer;
 }
 
-.searchdata-container .add-container .box-input-add{
-    flex:3;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto;
+.searchdata-container .add-container .box-input-add {
+  flex: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
 }
 
-.searchdata-container .add-container #input-new-word{
+.searchdata-container .add-container #input-new-word {
   width: 80%;
   height: 50px;
   text-align: center;
@@ -298,55 +305,54 @@
   border: 2px solid rgb(156, 156, 156);
   border-radius: 5px;
   margin: 0 auto;
-    
 }
 
 .searchdata-container .add-container #input-new-word:focus {
-    outline: inherit;
-  }
-
-  .searchdata-container .add-container #message{
-      margin-bottom: 20px;
-      color:rgb(251, 110, 110);
-      font-size: 0.9em;
-      cursor:default;
-  }
-
-  .searchdata-container .add-container #message-hidden{
-    margin-bottom: 20px;
-    color:rgb(251, 110, 110);
-    font-size: 0.9em;
-    cursor:default;
-    visibility: hidden;
+  outline: inherit;
 }
 
-.searchdata-container .add-container #btn-add-seachword{
-    border: inherit;
-    outline: inherit;
-    cursor: pointer;
-    width: 70px;
-    height: 35px;
-    border-radius: 5px;
-    color: rgb(255, 255, 255);
-    font-size: 1.05em;
-    font-weight: 500;
-    margin: 0 auto;
+.searchdata-container .add-container #message {
+  margin-bottom: 20px;
+  color: rgb(251, 110, 110);
+  font-size: 0.9em;
+  cursor: default;
+}
+
+.searchdata-container .add-container #message-hidden {
+  margin-bottom: 20px;
+  color: rgb(251, 110, 110);
+  font-size: 0.9em;
+  cursor: default;
+  visibility: hidden;
+}
+
+.searchdata-container .add-container #btn-add-seachword {
+  border: inherit;
+  outline: inherit;
+  cursor: pointer;
+  width: 70px;
+  height: 35px;
+  border-radius: 5px;
+  color: rgb(255, 255, 255);
+  font-size: 1.05em;
+  font-weight: 500;
+  margin: 0 auto;
 }
 
 .searchdata-container .add-container #btn-add-seachword:hover {
-    background-color: inherit;
-  }
+  background-color: inherit;
+}
 
-  .searchdata-container .add-container #btn-add-seachword-none{
-    border: inherit;
-    outline: inherit;
-    width: 70px;
-    height: 35px;
-    border-radius: 5px;
-    color: rgb(255, 255, 255);
-    font-size: 1.05em;
-    font-weight: 500;
-    margin: 0 auto;
+.searchdata-container .add-container #btn-add-seachword-none {
+  border: inherit;
+  outline: inherit;
+  width: 70px;
+  height: 35px;
+  border-radius: 5px;
+  color: rgb(255, 255, 255);
+  font-size: 1.05em;
+  font-weight: 500;
+  margin: 0 auto;
 }
 
 /*저장 완료 모달*/
@@ -370,27 +376,27 @@
   box-sizing: border-box;
   z-index: 10;
   opacity: 1;
-  transition: opacity 500ms,
+  transition: opacity 500ms;
 }
 
 .searchdata-container .hidden {
   opacity: 0;
   visibility: hidden;
-  transition: opacity 500ms , visibility 500ms,
+  transition: opacity 500ms, visibility 500ms;
 }
 
-.searchdata-container .modalsave-container .icon-save{
-color: rgb(96, 214, 106);
-font-size: 2em;
-margin-bottom: 10px;
+.searchdata-container .modalsave-container .icon-save {
+  color: rgb(96, 214, 106);
+  font-size: 2em;
+  margin-bottom: 10px;
 }
 
-.searchdata-container .modalsave-container .text-save{
-color: rgb(80, 80, 80);
+.searchdata-container .modalsave-container .text-save {
+  color: rgb(80, 80, 80);
 }
 
 /*삭제 컨펌*/
-.searchdata-container .confirmdelete-container{
+.searchdata-container .confirmdelete-container {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -410,25 +416,24 @@ color: rgb(80, 80, 80);
   z-index: 10;
 }
 
-.searchdata-container .confirmdelete-container .icon-delete{
+.searchdata-container .confirmdelete-container .icon-delete {
   flex: 1;
   color: rgb(121, 121, 121);
   font-size: 2em;
   margin-bottom: 10px;
 }
 
-.searchdata-container .confirmdelete-container .text-delete{
-  flex: 1; 
-  
+.searchdata-container .confirmdelete-container .text-delete {
+  flex: 1;
 }
-.searchdata-container .confirmdelete-container .box-btn-delete{
+.searchdata-container .confirmdelete-container .box-btn-delete {
   flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.searchdata-container .confirmdelete-container .btn-delete-accept{
+.searchdata-container .confirmdelete-container .btn-delete-accept {
   box-shadow: none;
   border: none;
   outline: inherit;
@@ -447,7 +452,7 @@ color: rgb(80, 80, 80);
   background-color: inherit;
 }
 
-.searchdata-container .confirmdelete-container .btn-delete-cancel{
+.searchdata-container .confirmdelete-container .btn-delete-cancel {
   box-shadow: none;
   border: none;
   outline: inherit;
@@ -487,21 +492,21 @@ color: rgb(80, 80, 80);
   box-sizing: border-box;
   z-index: 10;
   opacity: 1;
-  transition: opacity 500ms,
+  transition: opacity 500ms;
 }
 
 .searchdata-container .hidden {
   opacity: 0;
   visibility: hidden;
-  transition: opacity 500ms , visibility 500ms,
+  transition: opacity 500ms, visibility 500ms;
 }
 
-.searchdata-container .modaldelete-container .icon-delete-complete{
-color: rgb(231, 131, 140);
-font-size: 2em;
-margin-bottom: 25px;
+.searchdata-container .modaldelete-container .icon-delete-complete {
+  color: rgb(231, 131, 140);
+  font-size: 2em;
+  margin-bottom: 25px;
 }
 
-.searchdata-container .modaldelete-container .text-delete-complete{
-color: rgb(80, 80, 80);
+.searchdata-container .modaldelete-container .text-delete-complete {
+  color: rgb(80, 80, 80);
 }
