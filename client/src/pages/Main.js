@@ -111,7 +111,7 @@ export default function Main() {
           <div
             className='logo'
             style={{ color: themeColor }}
-            onClick={() => {}}
+            onClick={() => {window.location.replace('/')}}
           >
             {siteName}
           </div>
