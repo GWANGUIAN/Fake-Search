@@ -86,7 +86,7 @@
 <summary><b>모바일</b></summary>
 <div markdown="1">       
 
-![모바일](https://user-images.githubusercontent.com/85675881/149657981-bff3fd87-eb05-4367-83a5-3e863a2afc2d.gif)
+![모바일](https://user-images.githubusercontent.com/85675881/149803299-11f05e2c-3503-4bcf-9e10-15e7bbfbdd80.gif)
  
 </div>
 </details>
