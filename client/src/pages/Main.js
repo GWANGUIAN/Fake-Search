@@ -6,7 +6,8 @@ import Manual from '../components/Manual/Manual';
 import { useSelector } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCog, faSearch } from '@fortawesome/free-solid-svg-icons';
-import { BrowserView } from 'react-device-detect';
+import { BrowserView, MobileOnlyView } from 'react-device-detect';
+import Mobile from '../components/Main/Mobile';
 import filterAutoComplete from '../utils/filterAutoComplete';
 import useManual from '../hooks/useManual';
 import axios from 'axios';
@@ -26,6 +27,7 @@ export default function Main() {
   const [modal, setModal] = useState(false);
   const [focus, setFocus] = useState(false);
   const [loginModal, setLoginModal] = useState(false);
+  const [mobileInput, setMobileInput] = useState(false);
   const history = useHistory();
 
   const handleClickOutside = ({ target }) => {
@@ -59,7 +61,8 @@ export default function Main() {
     setSearchWord(e.target.value);
     if (
       filterAutoComplete(e.target.value) !== '' &&
-      e.target.value.replace(/(\s*)/g, '') !== ''
+      e.target.value.replace(/(\s*)/g, '') !== '' &&
+      isLogin
     ) {
       const word = filterAutoComplete(e.target.value);
       const res = await axios.get(
@@ -75,101 +78,212 @@ export default function Main() {
 
   return (
     <>
-      <div className='main-container'>
-        <div className='navBar-container'>
-          {!isLogin ? (
+      <BrowserView>
+        <div className='main-container'>
+          <div className='navBar-container'>
+            {!isLogin ? (
+              <div
+                className='btn-login'
+                ref={btnLogin}
+                onClick={() => {
+                  setLoginModal(true);
+                }}
+              >
+                로그인
+              </div>
+            ) : (
+              <div className='btn-logout' onClick={hadleLogout}>
+                로그아웃
+              </div>
+            )}
             <div
-              className='btn-login'
-              ref={btnLogin}
+              className={modal ? 'box-setting on' : 'box-setting'}
               onClick={() => {
-                setLoginModal(true);
+                if (!isLogin) {
+                  setModal(!modal);
+                } else {
+                  history.push('/setting');
+                }
+              }}
+              ref={btnSetting}
+            >
+              <FontAwesomeIcon className='btn-setting' icon={faCog} />
+            </div>
+            <AlertLogin el={notification} modal={modal} />
+          </div>
+          <div className='searchForm-container'>
+            <div
+              className='logo'
+              style={{ color: themeColor }}
+              onClick={() => {
+                window.location.replace('/');
               }}
             >
-              로그인
+              {siteName}
             </div>
-          ) : (
-            <div className='btn-logout' onClick={hadleLogout}>
-              로그아웃
-            </div>
-          )}
-          <div
-            className={modal ? 'box-setting on' : 'box-setting'}
-            onClick={() => {
-              if (!isLogin) {
-                setModal(!modal);
-              } else {
-                history.push('/setting');
-              }
-            }}
-            ref={btnSetting}
-          >
-            <FontAwesomeIcon className='btn-setting' icon={faCog} />
-          </div>
-          <AlertLogin el={notification} modal={modal} />
-        </div>
-        <div className='searchForm-container'>
-          <div
-            className='logo'
-            style={{ color: themeColor }}
-            onClick={() => {window.location.replace('/')}}
-          >
-            {siteName}
-          </div>
-          <div className='search-box hidden'>
-            <div
-              className={focus ? 'search-box-auto focus' : 'search-box-auto'}
-              style={{ border: `2px solid ${themeColor}` }}
-            >
+            <div className='search-box hidden'>
               <div
-                className={
-                  searchWord === '' || autoComplete.length === 0 || !focus
-                    ? 'search-box-inner'
-                    : 'search-box-inner border'
-                }
+                className={focus ? 'search-box-auto focus' : 'search-box-auto'}
+                style={{ border: `2px solid ${themeColor}` }}
               >
-                <button
-                  className='searchButton'
-                  onClick={() => {
-                    window.location.replace(`/search/query=${searchWord}`);
-                  }}
+                <div
+                  className={
+                    searchWord === '' || autoComplete.length === 0 || !focus
+                      ? 'search-box-inner'
+                      : 'search-box-inner border'
+                  }
                 >
-                  <FontAwesomeIcon icon={faSearch} />
-                </button>
-                <input
-                  type='text'
-                  className='search'
-                  onChange={handleSeachWord}
-                  onFocus={() => {
-                    setFocus(true);
-                  }}
-                  onBlur={() => {
-                    setFocus(false);
-                  }}
-                  onKeyPress={(e) => {
-                    if (e.key === 'Enter') {
+                  <button
+                    className='searchButton'
+                    onClick={() => {
                       window.location.replace(`/search/query=${searchWord}`);
-                    }
-                  }}
-                ></input>
+                    }}
+                  >
+                    <FontAwesomeIcon icon={faSearch} />
+                  </button>
+                  <input
+                    type='text'
+                    className='search'
+                    onChange={handleSeachWord}
+                    onFocus={() => {
+                      setFocus(true);
+                    }}
+                    onBlur={() => {
+                      setFocus(false);
+                    }}
+                    onKeyPress={(e) => {
+                      if (e.key === 'Enter') {
+                        window.location.replace(`/search/query=${searchWord}`);
+                      }
+                    }}
+                  ></input>
+                </div>
+                {searchWord === '' && autoComplete.length === 0
+                  ? ''
+                  : focus &&
+                    autoComplete.map((el, id) => {
+                      return (
+                        <AutoList
+                          key={id}
+                          el={el}
+                          searchWord={searchWord}
+                          themeColor={themeColor}
+                        ></AutoList>
+                      );
+                    })}
               </div>
-              {searchWord === '' && autoComplete.length === 0
-                ? ''
-                : focus &&
-                  autoComplete.map((el, id) => {
-                    return (
-                      <AutoList
-                        key={id}
-                        el={el}
-                        searchWord={searchWord}
-                        themeColor={themeColor}
-                      ></AutoList>
-                    );
-                  })}
             </div>
           </div>
         </div>
-      </div>
-        <Login login={login} siteName={siteName} themeColor={themeColor} loginModal={loginModal}/>
+      </BrowserView>
+      <MobileOnlyView>
+        <div className={mobileInput ? 'main-container-none' : 'main-container'}>
+          <div className='navBar-container'>
+            {!isLogin ? (
+              <div
+                className='btn-login'
+                ref={btnLogin}
+                onClick={() => {
+                  setLoginModal(true);
+                }}
+              >
+                로그인
+              </div>
+            ) : (
+              <div className='btn-logout' onClick={hadleLogout}>
+                로그아웃
+              </div>
+            )}
+            <div
+              className={modal ? 'box-setting on' : 'box-setting'}
+              onClick={() => {
+                if (!isLogin) {
+                  setModal(!modal);
+                } else {
+                  history.push('/setting');
+                }
+              }}
+              ref={btnSetting}
+            >
+              <FontAwesomeIcon className='btn-setting' icon={faCog} />
+            </div>
+            <AlertLogin el={notification} modal={modal} />
+          </div>
+          <div className='searchForm-container'>
+            <div
+              className='logo'
+              style={{ color: themeColor }}
+              onClick={() => {
+                window.location.replace('/');
+              }}
+            >
+              {siteName}
+            </div>
+            <div className='search-box hidden'>
+              <div
+                className={focus ? 'search-box-auto focus' : 'search-box-auto'}
+                style={{ border: `2px solid ${themeColor}` }}
+              >
+                <div
+                  className={
+                    searchWord === '' || autoComplete.length === 0 || !focus
+                      ? 'search-box-inner'
+                      : 'search-box-inner border'
+                  }
+                >
+                  <button
+                    className='searchButton'
+                    onClick={() => {
+                      window.location.replace(`/search/query=${searchWord}`);
+                    }}
+                  >
+                    <FontAwesomeIcon icon={faSearch} />
+                  </button>
+                  <input
+                    type='text'
+                    className='search'
+                    value={searchWord}
+                    onChange={handleSeachWord}
+                    onFocus={() => {
+                      setFocus(true);
+                      setMobileInput(true);
+                    }}
+                    onBlur={() => {
+                      setFocus(false);
+                    }}
+                    onKeyPress={(e) => {
+                      if (e.key === 'Enter') {
+                        window.location.replace(`/search/query=${searchWord}`);
+                      }
+                    }}
+                  ></input>
+                </div>
+                {searchWord === '' && autoComplete.length === 0
+                  ? ''
+                  : focus &&
+                    autoComplete.map((el, id) => {
+                      return (
+                        <AutoList
+                          key={id}
+                          el={el}
+                          searchWord={searchWord}
+                          themeColor={themeColor}
+                        ></AutoList>
+                      );
+                    })}
+              </div>
+            </div>
+          </div>
+        </div>
+        {mobileInput && <Mobile setMobileInput={setMobileInput} searchWord={searchWord} setSearchWord={setSearchWord}/>}
+      </MobileOnlyView>
+
+      <Login
+        login={login}
+        siteName={siteName}
+        themeColor={themeColor}
+        loginModal={loginModal}
+      />
       <BrowserView>{isPopUpOpen && <Manual setDate={setDate} />}</BrowserView>
     </>
   );
