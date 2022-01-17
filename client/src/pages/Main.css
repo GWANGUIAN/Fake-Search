@@ -6,6 +6,10 @@
     margin: 0 auto;
 }
 
+.main-container-none {
+    display: none;
+}
+
 .main-container .navBar-container{
     width: 97%;
     flex: 0.1;
