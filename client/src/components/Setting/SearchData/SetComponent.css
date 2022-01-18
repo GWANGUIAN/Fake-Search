@@ -99,7 +99,26 @@
 .profileset-container .box-detail {
   display: flex;
   align-items: center;
+  overflow-x: auto;
 }
+
+  /* 스크롤바 설정*/
+  .profileset-container .box-detail::-webkit-scrollbar {
+    height: 2px;
+  }
+
+  /* 스크롤바 막대 설정*/
+  .profileset-container .box-detail::-webkit-scrollbar-thumb {
+    height: 17%;
+    background-color: gray;
+    border-radius: 10px;
+  }
+
+  /* 스크롤바 뒷 배경 설정*/
+  .profileset-container .box-detail::-webkit-scrollbar-track {
+    background-color: rgb(214, 214, 214);
+    border-radius: 10px;
+  }
 
 .profileset-container .img-profile {
   display: flex;
@@ -246,6 +265,11 @@
 }
 
 @media (min-width: 0px) and (max-width: 753px) {
+  .profileset-container .img-profile-line {
+    height: 160px;
+    width: 120px;
+  }
+
   .profileset-container .img-subinfo-line {
     display: flex;
     flex-direction: column;
