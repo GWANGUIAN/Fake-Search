@@ -32,15 +32,15 @@
 }
 
 @media (min-width: 0px) and (max-width: 680px) {
-
   .search-container .news,
   .search-container .map,
   .search-container .dictionary,
-  .search-container .shopping
-   {
+  .search-container .shopping {
     display: none;
   }
+
 }
+
 
 .search-container .box-logo {
   flex: 1;
@@ -51,6 +51,13 @@
   position: relative;
   max-width: 30px;
   cursor: pointer;
+}
+
+@media (min-width: 0px) and (max-width: 440px) {
+
+  .search-container .box-logo {
+    margin-left: 10px;
+  }
 }
 
 .search-container .box-logo::before {

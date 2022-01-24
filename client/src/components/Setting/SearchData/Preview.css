@@ -57,6 +57,13 @@
     cursor: pointer;
 }
 
+@media (min-width: 0px) and (max-width: 440px) {
+
+    .preview-container .box-logo {
+      margin-left: 10px;
+    }
+  }
+
 .preview-container .box-logo::before{
     content : "";
   position: absolute;
