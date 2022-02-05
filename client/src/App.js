@@ -9,7 +9,6 @@ import Main from './pages/Main';
 import Search from './pages/Search';
 import Setting from './pages/Setting';
 import Footer from './pages/Footer';
-import Mobile from './components/Main/Mobile';
 import NaverLogin from './components/Login/NaverLogin';
 import Personal from './pages/Personal';
 import Use from './pages/Use';
@@ -28,7 +27,7 @@ function App() {
         }
       })
       .catch((err) => {
-        console.log(err);
+        dispatch(login({isLogin: false, siteName: 'FAKESEARCH'}))
       });
   }, [dispatch]);
 

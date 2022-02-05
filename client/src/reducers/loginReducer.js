@@ -5,7 +5,7 @@ const loginReducer = (
     isLogin: false,
     oauth: '',
     id: 'default',
-    siteName: 'FAKESEARCH',
+    siteName: '',
     themeColor: '#2260FF',
   },
   action
