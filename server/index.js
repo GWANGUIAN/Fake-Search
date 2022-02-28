@@ -36,7 +36,7 @@ const sequelize = new Sequelize(
 // 서버 설정
 const app = express();
 const corsOptions = {
-  origin: ["http://localhost:3000", 'https://fakesearch.link', 'https://www.fakesearch.link'],
+  origin: ['https://fakesearch.link', 'https://www.fakesearch.link'],
   methods: ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE", "OPTIONS"],
   credentials: true,
 };
