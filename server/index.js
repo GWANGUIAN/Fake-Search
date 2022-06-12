@@ -36,7 +36,7 @@ const sequelize = new Sequelize(
 // 서버 설정
 const app = express();
 const corsOptions = {
-  origin: ['https://fakesearch.link', 'https://www.fakesearch.link', 'https://fake-search-nextjs-ts.vercel.app'],
+  origin: ['https://fakesearch.link', 'https://www.fakesearch.link', 'https://fake-search-nextjs-ts.vercel.app', 'https://fake-search-nextjs-s3qsotwux-gwanguian.vercel.app'],
   methods: ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE", "OPTIONS"],
   credentials: true,
 };
