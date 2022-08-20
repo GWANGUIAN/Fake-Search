@@ -31,7 +31,10 @@ module.exports = async (req, res) => {
         );
   
         res
-          .cookie("accessToken", accessToken)
+          .cookie("accessToken", accessToken, {
+            sameSite:'none',
+            secure: true,
+          })
           .status(200)
           .end();
       } else {
@@ -42,7 +45,10 @@ module.exports = async (req, res) => {
           { expiresIn: "7d" }
         );
         res
-          .cookie("accessToken", accessToken)
+          .cookie("accessToken", accessToken, {
+            sameSite:'none',
+            secure: true,
+          })
           .status(201)
           .end();
       }
